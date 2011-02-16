@@ -1,0 +1,24 @@
+[user]
+  name = Harry
+  email = harry.robertson@gmail.com
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+[push]
+  default = current
+[gc]
+  # Don't run gc --auto for me after some commands. 
+  # I will run git-gc from time to time by hand.
+  auto = 0
+
+[alias]
+  st = status
+  br = branch
+  co = checkout
+  df = diff
+  lg = log
+  gl = log --graph --oneline
+  cp = cherry-pick

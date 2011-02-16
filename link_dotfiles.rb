@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-DOTDIR = ".dotfiles"
+DOTDIR = "dotfiles"
 Dir.chdir(File::expand_path("~"))
 Dir.foreach(DOTDIR) do |file|
   if file.match(/(\.[a-z]+)/) && file != ".git"
