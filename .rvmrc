@@ -1,0 +1,3 @@
+rvm_trust_rvmrcs_flag=1         # trust all .rvmrc files
+rvm_gemset_create_on_use_flag=1 # create gemsets automatically the first time they are used
+rvm_project_rvmrc_default=1     # change back to the system ruby when not in a project with an .rvmrc

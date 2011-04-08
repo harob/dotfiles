@@ -6,7 +6,7 @@
   status = auto
   branch = auto
   interactive = auto
-  ui = true
+	ui = auto
 [push]
   default = current
 [gc]
@@ -22,3 +22,5 @@
   lg = log
   gl = log --graph --oneline
   cp = cherry-pick
+  ci = commit
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short

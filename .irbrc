@@ -1,7 +1,7 @@
 require 'irb/completion'
 require 'rubygems'
 require 'map_by_method'
-require 'pp'
+# require 'pp'
 IRB.conf[:AUTO_INDENT]=true
 
 require 'irb/ext/save-history'
