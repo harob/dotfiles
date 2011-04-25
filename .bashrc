@@ -13,6 +13,7 @@ P="\[\033[0;35m\]"
 C="\[\033[0;36m\]"
 W="\[\033[0;38m\]"
 NC="\[\033[0;0m\]"
+GBOLD="\[\033[1;32m\]"
 
 unset PROMPT_COMMAND
 TITLEBAR='\[\033]0;\u@\h - \W \007\]'
@@ -25,9 +26,9 @@ function prompt_uncolorized {
 }
 function prompt_colorized {
   PS1="${TITLEBAR}${P}[\t] ${Y}\u@\h ${C}\W"
-  [[ $(type -t __git_ps1) = "function" ]] && PS1="${PS1}${G}$(__git_ps1 '#%.6s')"
-  export PS1="${PS1}${B}\\$ ${NC}"
-  export PS2="${B}> ${NC}"
+  [[ $(type -t __git_ps1) = "function" ]] && PS1="${PS1}${B}$(__git_ps1 '#%.6s')"
+  export PS1="${PS1}${GBOLD}\\$ ${NC}"
+  export PS2="${GBOLD}> ${NC}"
 }
 
 PROMPT_COMMAND=prompt_colorized
