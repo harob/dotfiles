@@ -1,3 +1,5 @@
+export EDITOR=vim
+
 # Add git branch to bash command prompt
 for file in {/sw,/opt/local,$HOME/local,}/etc/bash_completion; do
   [[ -r $file ]] && source $file
