@@ -7,8 +7,10 @@
   branch = auto
   interactive = auto
   ui = auto
+[branch]
+  autosetuprebase = always
 [push]
-  default = current
+  default = tracking
 [gc]
   # Don't run gc --auto for me after some commands. 
   # I will run git-gc from time to time by hand.
