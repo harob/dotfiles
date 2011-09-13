@@ -29,8 +29,8 @@ function prompt_uncolorized {
 function prompt_colorized {
   PS1="${TITLEBAR}${P}[\t] ${Y}\u@\h ${C}\W"
   [[ $(type -t __git_ps1) = "function" ]] && PS1="${PS1}${B}$(__git_ps1 '#%.6s')"
-  export PS1="${PS1}${GBOLD}\\$ ${NC}"
-  export PS2="${GBOLD}> ${NC}"
+  export PS1="${PS1}${G}\\$ ${NC}"
+  export PS2="${G}> ${NC}"
 }
 
 PROMPT_COMMAND=prompt_colorized
@@ -38,12 +38,20 @@ PROMPT_COMMAND=prompt_colorized
 export PAGER="less -FiRswX"
 export MANPAGER=$PAGER
 
+[[ -r $HOME/workspace/external_codebases/z/z.sh ]] && . $HOME/workspace/external_codebases/z/z.sh
+
+# RVM setup; note that this line must come *before* sourcing fuzzycd_bash_wrapper.sh
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
 # PhilC's fuzzycd script
-export PATH=~/scripts/fuzzycd/:$PATH
-source ~/scripts/fuzzycd/fuzzycd_bash_wrapper.sh
+#export PATH=~/scripts/fuzzycd/:$PATH
+#source ~/scripts/fuzzycd/fuzzycd_bash_wrapper.sh
 
 alias g='git'
 complete -o default -o nospace -F _git g # Autocomplete for 'g' as well
 
 alias ll='ls -al'
 alias hdfs='hadoop fs'
+alias psg='ps -ef | grep'
+
