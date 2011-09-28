@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -25,7 +25,7 @@ ZSH_THEME="harry"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git cap gem heroku lein macports)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,6 +46,17 @@ function precmd()
   #vcs_info
   _z --add "$(pwd -P)"
 }
+
+# Say how long a command took, if it took more than N seconds
+export REPORTTIME=15
+
+# Zsh spelling correction options
+setopt CORRECT
+setopt DVORAK
+
+# Prompts for confirmation after 'rm *' etc
+# Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
+setopt RM_STAR_WAIT
 
 # load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
