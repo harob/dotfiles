@@ -1,2 +1,6 @@
 --type-set
 markdown=.md
+
+--type-add
+js=.coffee
+
