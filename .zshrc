@@ -37,6 +37,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
 alias hdfs='hadoop fs'
+alias v='mvim'
 
 # z.sh - from https://github.com/rupa/z
 [[ -r $HOME/workspace/external_codebases/z/z.sh ]] && . $HOME/workspace/external_codebases/z/z.sh
@@ -51,7 +52,7 @@ function precmd()
 export REPORTTIME=15
 
 # Zsh spelling correction options
-setopt CORRECT
+#setopt CORRECT
 setopt DVORAK
 
 # Prompts for confirmation after 'rm *' etc
@@ -66,7 +67,9 @@ bindkey '^R' history-incremental-search-backward # search backwards with ^R
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
-bindkey "hh" vi-cmd-mode
+# Useful on boxes where there is no good alternative to the ESC button. A better solution is to use Caps Lock
+# as Ctrl when held down and ESC when tapped.
+#bindkey "hh" vi-cmd-mode
 
 # load RVM
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
