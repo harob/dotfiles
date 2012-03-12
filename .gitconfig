@@ -27,4 +27,6 @@
   d = diff
   f = filename # git-filename script: https://github.com/cespare/git-scripts/blob/master/git-filename
 
+  ss = stash
+  sp = stash pop
 
