@@ -1,0 +1,4 @@
+config keyboardLayout dvorak
+bind ':cmd hint
+bind f12 hint
+
