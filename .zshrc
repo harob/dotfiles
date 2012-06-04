@@ -38,6 +38,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
 
 alias hdfs='hadoop fs'
 alias v='mvim'
+alias be='bundle exec'
 
 # z.sh - from https://github.com/rupa/z
 [[ -r $HOME/workspace/external_codebases/z/z.sh ]] && . $HOME/workspace/external_codebases/z/z.sh

@@ -30,3 +30,5 @@
   ss = stash
   sp = stash pop
 
+[core]
+	excludesfile = /Users/harry/.gitignore
