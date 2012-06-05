@@ -2,3 +2,6 @@ config keyboardLayout dvorak
 bind ':cmd hint
 bind f12 hint
 
+bind f6 snapshot theName save-to-disk
+bind f7 activate-snapshot theName
+
