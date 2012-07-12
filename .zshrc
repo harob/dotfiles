@@ -25,7 +25,7 @@ ZSH_THEME="harry"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cap gem heroku lein macports)
+plugins=(git cap gem heroku lein macports zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,4 +79,7 @@ bindkey -M vicmd 'v' edit-command-line
 # And let's use rbenv instead of RVM:
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# Nicer grep from Noam
+alias grep='grep -n -s -i --color'
 
