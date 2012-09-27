@@ -39,6 +39,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
 alias hdfs='hadoop fs'
 alias v='mvim'
 alias be='bundle exec'
+alias bi='bundle install'
 
 # z.sh - from https://github.com/rupa/z
 [[ -r $HOME/workspace/external_codebases/z/z.sh ]] && . $HOME/workspace/external_codebases/z/z.sh
@@ -82,4 +83,6 @@ eval "$(rbenv init -)"
 
 # Nicer grep from Noam
 alias grep='grep -n -s -i --color'
+
+unsetopt correct_all
 

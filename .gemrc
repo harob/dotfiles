@@ -7,5 +7,4 @@ gem: --no-ri --no-rdoc
 :sources: 
 - http://gems.rubyforge.org/
 - http://gems.github.com
-- http://gems.sv2
 :benchmark: false

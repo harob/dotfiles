@@ -32,3 +32,4 @@
 
 [core]
 	excludesfile = /Users/harry/.gitignore
+	editor = /usr/bin/vim
