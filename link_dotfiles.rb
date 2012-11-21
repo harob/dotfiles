@@ -17,4 +17,4 @@ end
 
 # TODO(harry) Hack for current nested files:
 `rm .lein/profiles.clj`
-`ln -Fs #{DOTDIR}/.lein/profiles.clj .lein/profiles.clj`
+`ln -Fs ../#{DOTDIR}/.lein/profiles.clj .lein/profiles.clj`
