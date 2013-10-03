@@ -4,3 +4,5 @@ markdown=.md
 --type-add
 js=.coffee
 
+--type-add
+css=.less

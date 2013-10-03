@@ -5,8 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="harry"
-#ZSH_THEME="nicoulaj"
+# NOTE(harry) We set the theme in here instead.
+#ZSH_THEME="harry"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -31,24 +31,32 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+# VI prompt
+vi_mode_indicator='$'
+PROMPT='%F{yellow}%n@%m %F{cyan}%c%F{green} $vi_mode_indicator %f'
+RPROMPT=' %F{magenta}[%*]%f'
+function zle-line-init zle-keymap-select() {
+  vi_mode_indicator="${${KEYMAP/vicmd/☯}/(main|viins)/$}"
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
-#export PATH=$PATH:/Users/harry/.rvm/bin
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
-alias hdfs='hadoop fs'
+alias l='ls -alh'
 alias v='mvim'
+alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias hdfs='hadoop fs'
 alias be='bundle exec'
 alias bi='bundle install'
+alias bef='bundle exec fez'
+alias ber='bundle exec rake'
 
-# z.sh - from https://github.com/rupa/z
-[[ -r $HOME/workspace/external_codebases/z/z.sh ]] && . $HOME/workspace/external_codebases/z/z.sh
-source ~/workspace/external_codebases/z/z.sh
-function precmd()
-{
-  #vcs_info
-  _z --add "$(pwd -P)"
-}
+# fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
+eval "$(fasd --init auto)"
 
 # Say how long a command took, if it took more than N seconds
 export REPORTTIME=15
@@ -64,25 +72,27 @@ setopt RM_STAR_WAIT
 # Vi mode!
 bindkey -v
 bindkey "^?" backward-delete-char                # Allow for deleting characters in vi mode
-bindkey '^R' history-incremental-search-backward # search backwards with ^R
-# We want to use 'v' in normal mode to edit and execute like in bash vi mode
-autoload -U edit-command-line
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey "^P" vi-up-line-or-history
+bindkey "^N" vi-down-line-or-history
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+autoload -U edit-command-line # We want to use 'v' in normal mode to edit and execute like in bash vi mode
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
+export KEYTIMEOUT=1
 # Useful on boxes where there is no good alternative to the ESC button. A better solution is to use Caps Lock
 # as Ctrl when held down and ESC when tapped.
 #bindkey "hh" vi-cmd-mode
 
-# load RVM
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-#__rvm_project_rvmrc
-
-# And let's use rbenv instead of RVM:
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# Nicer grep from Noam
-alias grep='grep -n -s -i --color'
+export GOPATH=/Users/harry/workspace/external_codebases/gocode
+export PATH="$GOPATH/bin:$PATH"
 
 unsetopt correct_all
+unsetopt rm_star_wait
+unsetopt HIST_IGNORE_SPACE
 
+autoload -U zmv

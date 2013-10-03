@@ -18,17 +18,18 @@
 
 [alias]
   co = checkout
-  l = log --pretty=format:\"%h %ad | [%an] %s%d\" --graph --date=short
   cp = cherry-pick
   c = commit
   s = status
   b = branch
   a = add
   d = diff
-  f = filename # git-filename script: https://github.com/cespare/git-scripts/blob/master/git-filename
-
   ss = stash
   sp = stash pop
+
+  f = filename # git-filename script: https://github.com/cespare/git-scripts/blob/master/git-filename
+  l = log --pretty=format:\"%h %ad | [%an] %s%d\" --graph --date=short
+  last = "!git log --oneline -n 1 --format='%H'"
 
 [core]
 	excludesfile = /Users/harry/.gitignore
