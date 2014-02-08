@@ -1,31 +1,11 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# NOTE(harry) We set the theme in here instead.
-#ZSH_THEME="harry"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
+# Comment this out to disable weekly oh-my-zsh auto-update checks
  DISABLE_AUTO_UPDATE="true"
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cap gem heroku lein macports zsh-syntax-highlighting)
+plugins=(git cap gem heroku lein macports zsh-syntax-highlighting osx)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,14 +65,21 @@ export KEYTIMEOUT=1
 # as Ctrl when held down and ESC when tapped.
 #bindkey "hh" vi-cmd-mode
 
+export EDITOR='vim'
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export GOPATH=/Users/harry/workspace/external_codebases/gocode
+export GOPATH="$HOME/workspace/external_codebases/gocode"
 export PATH="$GOPATH/bin:$PATH"
+go() {
+  command glp $@
+}
 
 unsetopt correct_all
 unsetopt rm_star_wait
-unsetopt HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY  # save history as commands are entered, not when shell exits
+setopt HIST_IGNORE_DUPS    # don't save duplicate commmands in history
+unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 autoload -U zmv

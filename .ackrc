@@ -1,8 +1,4 @@
---type-set
-markdown=.md
-
---type-add
-js=.coffee
-
---type-add
-css=.less
+--type-set=markdown=.md
+--type-add=js=.coffee
+--type-add=css=.less
+--ignore-dir=asset-cache

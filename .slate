@@ -5,3 +5,13 @@ bind f12 hint
 bind f6 snapshot theName save-to-disk
 bind f7 activate-snapshot theName
 
+# Focus an app with a single keystroke.
+# Set to cmd;ctrl;alt to use the Hyper key
+bind c:cmd;ctrl focus "Google Chrome"
+bind e:cmd;ctrl focus "Emacs"
+bind m:cmd;ctrl focus "Emacs"
+bind t:cmd;ctrl focus "iTerm"
+bind a:cmd;ctrl focus "Adium"
+bind d:cmd;ctrl focus "Adium"
+bind g:cmd;ctrl focus "GitX"
+bind h:cmd;ctrl focus "Hall"
