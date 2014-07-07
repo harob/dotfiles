@@ -68,13 +68,14 @@ export KEYTIMEOUT=1
 export EDITOR='vim'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export GOPATH="$HOME/workspace/external_codebases/gocode"
 export PATH="$GOPATH/bin:$PATH"
 go() {
   command glp $@
 }
+[[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
 
 unsetopt correct_all
 unsetopt rm_star_wait
