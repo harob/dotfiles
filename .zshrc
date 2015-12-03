@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
  DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git cap gem heroku lein macports zsh-syntax-highlighting osx)
+plugins=(git cap gem heroku lein zsh-syntax-highlighting osx)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -28,7 +28,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
 
 alias l='ls -alh'
 alias v='mvim'
-alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias e='memacs'
 alias hdfs='hadoop fs'
 alias be='bundle exec'
 alias bi='bundle install'
@@ -70,11 +70,6 @@ export EDITOR='vim'
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export GOPATH="$HOME/workspace/external_codebases/gocode"
-export PATH="$GOPATH/bin:$PATH"
-go() {
-  command glp $@
-}
 [[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
 
 unsetopt correct_all
@@ -84,3 +79,5 @@ setopt HIST_IGNORE_DUPS    # don't save duplicate commmands in history
 unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 autoload -U zmv
+
+source /Users/harry/.iterm2_shell_integration.zsh
