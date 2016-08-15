@@ -1,6 +1,6 @@
-config keyboardLayout dvorak
-bind ':cmd hint
-bind f12 hint
+#config keyboardLayout dvorak
+#bind ':cmd hint
+#bind f12 hint
 
 bind f6 snapshot theName save-to-disk
 bind f7 activate-snapshot theName
@@ -11,5 +11,10 @@ bind c:cmd;ctrl focus "Google Chrome"
 bind m:cmd;ctrl focus "Emacs"
 bind t:cmd;ctrl focus "iTerm"
 bind h:cmd;ctrl focus "iTerm-ssh"
-bind d:cmd;ctrl focus "Adium"
 bind s:cmd;ctrl focus "Slack"
+
+bind c:cmd;ctrl;alt;shift focus "Google Chrome"
+bind m:cmd;ctrl;alt;shift focus "Emacs"
+bind t:cmd;ctrl;alt;shift focus "iTerm"
+bind h:cmd;ctrl;alt;shift focus "iTerm-ssh"
+bind s:cmd;ctrl;alt;shift focus "Slack"

@@ -4,6 +4,7 @@
                   ; [lein-clojars "0.9.1"]
                   ; [lein-exec "0.3.1"]
                   ; [lein-kibit "0.0.8"]
+                  [lein-pprint "1.1.1"]
                   ; [lein-try "0.4.1"]
                   ]
         :dependencies [
