@@ -7,14 +7,14 @@ bind f7 activate-snapshot theName
 
 # Focus an app with a single keystroke.
 # Set to cmd;ctrl;alt to use the Hyper key
-bind c:cmd;ctrl focus "Google Chrome"
-bind m:cmd;ctrl focus "Emacs"
-bind t:cmd;ctrl focus "iTerm"
-bind h:cmd;ctrl focus "iTerm-ssh"
-bind s:cmd;ctrl focus "Slack"
+#bind c:cmd;ctrl focus "Google Chrome"
+#bind m:cmd;ctrl focus "Emacs"
+#bind t:cmd;ctrl focus "iTerm"
+#bind h:cmd;ctrl focus "iTerm-ssh"
+#bind s:cmd;ctrl focus "Slack"
 
-bind c:cmd;ctrl;alt;shift focus "Google Chrome"
-bind m:cmd;ctrl;alt;shift focus "Emacs"
-bind t:cmd;ctrl;alt;shift focus "iTerm"
-bind h:cmd;ctrl;alt;shift focus "iTerm-ssh"
-bind s:cmd;ctrl;alt;shift focus "Slack"
+#bind c:cmd;ctrl;alt;shift focus "Google Chrome"
+#bind m:cmd;ctrl;alt;shift focus "Emacs"
+#bind t:cmd;ctrl;alt;shift focus "iTerm"
+#bind h:cmd;ctrl;alt;shift focus "iTerm-ssh"
+#bind s:cmd;ctrl;alt;shift focus "Slack"
