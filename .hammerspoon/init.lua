@@ -2,7 +2,6 @@ require('caffeine')
 
 -- TODO(harry):
 -- Fix Slack keyboard shortcuts: https://github.com/STRML/init/blob/master/hammerspoon/init.lua#L197
--- Add TODO addition: https://github.com/Hammerspoon/hammerspoon/issues/782
 
 function reloadConfig(files)
     doReload = false
@@ -91,7 +90,6 @@ hs.fnutils.each(grid, function(entry)
       index = index + 1
 
       local geo = hs.geometry.new(unit):fromUnitRect(screen:frame()):floor()
-      print('binding', index, geo, windowGeo)
       return windowGeo:equals(geo)
     end)
     if index == #units then index = 0 end
@@ -168,7 +166,7 @@ screenWatcher = hs.screen.watcher.new(onScreensChanged)
 screenWatcher:start()
 
 
----- TODO taker
+---- GTD task taker
 
 -- CP'ed from https://github.com/Hammerspoon/hammerspoon/issues/782
 local chooser = nil
@@ -194,7 +192,9 @@ local function resetChoices()
 end
 
 local function appendCallbackFn (exitCode, stdOut, stdErr)
-  print("appendCallbackFn", exitCode, stdOut, stdErr)
+  if exitCode > 0 then
+    print("Append failure", exitCode, stdOut, stdErr)
+  end
 end
 
 local function append(text)
@@ -206,7 +206,6 @@ local function append(text)
   ):start()
 end
 
--- The chooser callback
 local function choiceCallback(choice)
   if choice.command == 'prepend' then
     append(chooser:query())
@@ -219,7 +218,6 @@ local function choiceCallback(choice)
 end
 
 hs.hotkey.bind(mash_app, "space", function()
-  print("chooser")
   chooser = hs.chooser.new(choiceCallback)
   -- disable built-in search
   chooser:queryChangedCallback(function() end)
