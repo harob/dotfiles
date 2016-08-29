@@ -14,7 +14,7 @@ function reloadConfig(files)
         hs.reload()
     end
 end
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
 
 
@@ -116,7 +116,7 @@ local laptop = "Color LCD"
 
 -- TODO(harry) Make sure this ordering works
 local leftTB = hs.screen.allScreens()[1]
-local rightTB = hs.screen.allScreens()[2]
+local rightTB = hs.screen.allScreens()[3]
 
 local workLayout = {
   {"iTerm", nil, leftTB, hs.layout.left50, nil, nil},
@@ -162,7 +162,7 @@ function onScreensChanged()
   end
 end
 
-screenWatcher = hs.screen.watcher.new(onScreensChanged)
+local screenWatcher = hs.screen.watcher.new(onScreensChanged)
 screenWatcher:start()
 
 
@@ -225,3 +225,20 @@ hs.hotkey.bind(mash_app, "space", function()
   resetChoices()
   chooser:show()
 end)
+
+
+---- Karabiner profile auto-switching
+
+function usbDeviceCallback(data)
+  print("usbDeviceCallback", hs.inspect.inspect(data))
+  if (data["productName"] == "ErgoDox EZ") then
+    if (data["eventType"] == "added") then
+      hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 1')
+    elseif (data["eventType"] == "removed") then
+      hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 0')
+    end
+  end
+end
+
+local usbWatcher = hs.usb.watcher.new(usbDeviceCallback)
+usbWatcher:start()
