@@ -20,6 +20,7 @@ hs.alert.show("Config loaded")
 
 ---- App switcher (Slate replacement)
 
+-- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 local mash_app = {"ctrl", "cmd"}
 
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
@@ -35,8 +36,8 @@ local mash = {"ctrl", "alt", "cmd"}
 
 hs.window.animationDuration = 0
 
--- CP'ed from https://github.com/AaronLasseigne/dotfiles/blob/50d2325c1ad7552ea95a313fbf022004e2932ce9/.hammerspoon/init.lua
-positions = {
+-- Source: https://github.com/AaronLasseigne/dotfiles/blob/50d2325c1ad7552ea95a313fbf022004e2932ce9/.hammerspoon/init.lua
+local positions = {
   maximized = hs.layout.maximized,
   centered = {x=0.15, y=0.15, w=0.7, h=0.7},
 
@@ -64,7 +65,7 @@ positions = {
 }
 
 -- TODO(harry) The rotation between the various units doesn't work on an MBP screen
-grid = {
+local grid = {
   {key="f", units={positions.upper50Left50}},
   {key="g", units={positions.upper50}},
   {key="c", units={positions.upper50Right50}},
@@ -99,7 +100,7 @@ hs.fnutils.each(grid, function(entry)
   end)
 end)
 
--- CP'd from https://gist.github.com/josephholsten/1e17c7418d9d8ec0e783
+-- Source: https://gist.github.com/josephholsten/1e17c7418d9d8ec0e783
 function sendWindowNextMonitor()
   hs.alert.show("Next Monitor")
   local win = hs.window.focusedWindow()
@@ -112,49 +113,49 @@ hs.hotkey.bind(mash, "s", sendWindowNextMonitor)
 
 ---- Screen watcher
 
-local laptop = "Color LCD"
-
--- TODO(harry) Make sure this ordering works
-local leftTB = hs.screen.allScreens()[1]
-local rightTB = hs.screen.allScreens()[3]
-
-local workLayout = {
-  {"iTerm", nil, leftTB, hs.layout.left50, nil, nil},
-  {"iTerm-ssh", nil, leftTB, hs.layout.left50, nil, nil},
-  {"Slack", nil, leftTB, hs.layout.left50, nil, nil},
-  {"Google Chrome", nil, leftTB, hs.layout.right50, nil, nil},
-  {"Emacs", nil, rightTB, hs.layout.maximized, nil, nil},
-}
-local laptopLayout = {
-  {"iTerm", nil, laptop, hs.layout.maximized, nil, nil},
-  {"iTerm-ssh", nil, laptop, hs.layout.maximized, nil, nil},
-  {"Slack", nil, laptop, hs.layout.maximized, nil, nil},
-  {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
-  {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
-}
-
+-- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 function switchLayout()
-  numScreens = #hs.screen.allScreens()
-  primaryScreen = hs.screen.allScreens()[1]:name()
-  if numScreens == 1 then
-    layout = laptopLayout
+  local screens = hs.screen.allScreens()
+  print("switchLayout", hs.inspect.inspect(screens))
+  local layout
+  local layoutName
+  if #screens == 1 then
+    local laptop = "Color LCD"
+    layout = {
+      {"iTerm", nil, laptop, hs.layout.maximized, nil, nil},
+      {"iTerm-ssh", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Slack", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
+    }
     layoutName = "Laptop layout"
-  elseif primaryScreen == "Thunderbolt Display" then
-    layout = workLayout
+    -- Also change the Karabiner config since usbWatcher is unreliable:
+    switchOffErgodox()
+  elseif screens[1]:name() == "Thunderbolt Display" then
+    local leftTB = hs.screen.allScreens()[1]
+    local rightTB = hs.screen.allScreens()[3]
+    layout = {
+      {"iTerm", nil, leftTB, hs.layout.left50, nil, nil},
+      {"iTerm-ssh", nil, leftTB, hs.layout.left50, nil, nil},
+      {"Slack", nil, leftTB, hs.layout.left50, nil, nil},
+      {"Google Chrome", nil, leftTB, hs.layout.right50, nil, nil},
+      {"Emacs", nil, rightTB, hs.layout.maximized, nil, nil},
+    }
     layoutName = "Thunderbolt layout"
+    switchOnErgodox()
   end
   hs.layout.apply(layout)
   hs.alert.show(layoutName)
 end
 
-hs.hotkey.bind(mash, "r", function()
-  switchLayout()
-end)
+hs.hotkey.bind(mash, "r", function() switchLayout() end)
+hs.hotkey.bind(mash, "p", function() switchLayout() end)
+hs.hotkey.bind(mash, "o", function() switchLayout() end)
 
 local lastNumberOfScreens = #hs.screen.allScreens()
 
 function onScreensChanged()
-  numScreens = #hs.screen.allScreens()
+  local numScreens = #hs.screen.allScreens()
 
   if lastNumberOfScreens ~= numScreens then
     switchLayout()
@@ -168,7 +169,7 @@ screenWatcher:start()
 
 ---- GTD task taker
 
--- CP'ed from https://github.com/Hammerspoon/hammerspoon/issues/782
+-- Source: https://github.com/Hammerspoon/hammerspoon/issues/782
 local chooser = nil
 
 local commands = {
@@ -229,13 +230,24 @@ end)
 
 ---- Karabiner profile auto-switching
 
+function switchOnErgodox()
+  print("switchOnErgodox")
+  hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 1')
+end
+
+function switchOffErgodox()
+  print("switchOffErgodox")
+  hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 0')
+end
+
+-- Source: https://github.com/tekezo/Karabiner/issues/354
 function usbDeviceCallback(data)
   print("usbDeviceCallback", hs.inspect.inspect(data))
   if (data["productName"] == "ErgoDox EZ") then
     if (data["eventType"] == "added") then
-      hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 1')
+      switchOnErgodox()
     elseif (data["eventType"] == "removed") then
-      hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 0')
+      switchOffErgodox()
     end
   end
 end
