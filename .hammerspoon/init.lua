@@ -203,7 +203,7 @@ local function append(text)
   -- sed -i '1i Text to prepend' file.txt
   hs.task.new("/usr/local/bin/gsed",
               appendCallbackFn,
-              {"-i", "1i ** TODO " .. text .. "", os.getenv("HOME") .. "/Dropbox (Personal)/Notational Data/tasks.txt"}
+              {"-i", "1i ** TODO " .. text .. "", os.getenv("HOME") .. "/Dropbox/notes/tasks.org"}
   ):start()
 end
 

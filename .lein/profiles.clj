@@ -32,5 +32,6 @@
                                    ; [vinyasa.reimport reimport]
                                    ; ])
                      ; (require 'spyscope.core) ; for the reader macro #spy/d, available in all namespaces
+                     (require '[clojure.pprint :refer [pprint pp]])
                      ]
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}}}
