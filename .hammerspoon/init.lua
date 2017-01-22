@@ -1,7 +1,9 @@
-require('caffeine')
+require("caffeine")
 
 -- TODO(harry):
 -- Fix Slack keyboard shortcuts: https://github.com/STRML/init/blob/master/hammerspoon/init.lua#L197
+
+hs.alert.show("Config loaded")
 
 function reloadConfig(files)
     doReload = false
@@ -15,7 +17,21 @@ function reloadConfig(files)
     end
 end
 hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/.hammerspoon/", reloadConfig):start()
-hs.alert.show("Config loaded")
+
+
+---- Essential key remaps (Karabiner replacement)
+
+keybindings = require "keybindings"
+
+keybindings.newOneTapMetaBinding(keybindings.keys.leftShift, {'shift'}, '9')
+keybindings.newOneTapMetaBinding(keybindings.keys.rightShift, {'shift'}, '0')
+keybindings.newOneTapMetaBinding(keybindings.keys.ctrl, {}, 'escape')
+
+
+-- Vim mode (Karabiner's ubiquitous-vim replacement)
+
+require("vim")
+keybindings.newOneTapMetaBinding(keybindings.keys.rightCmd, {'ctrl'}, '[')
 
 
 ---- App switcher (Slate replacement)

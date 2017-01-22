@@ -12,7 +12,7 @@ Dir.foreach(DOTDIR) do |file|
       Dir.foreach("#{DOTDIR}/#{dir}") do |nested_file|
         next if nested_file == "." || nested_file == ".."
         `rm #{dir}/#{nested_file}`
-        cmd = (nested_file =~ /\.pdf$/) ? "cpln" : " -Fs"
+        cmd = (nested_file =~ /\.pdf$/) ? "cp" : "ln -Fs"
         `#{cmd} ~/#{DOTDIR}/#{dir}/#{nested_file} #{dir}/#{nested_file}`
         puts "#{dir}/#{nested_file} => #{DOTDIR}/#{nested_file}/#{file}"
       end
