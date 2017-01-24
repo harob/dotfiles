@@ -134,7 +134,6 @@ local function oneTapMetaBinding(oldKeyCode, newKeyMod, newKeyCode)
       if not pressed then
          return false
       end
-      hs.alert.show('oneTapMetaBinding activated')
       -- If we reach here, the modifier key has been pressed and released without
       -- any other keys being pressed
       local down = eventtap.event.newKeyEvent(newKeyMod, newKeyCode, true)

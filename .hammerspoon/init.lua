@@ -28,7 +28,7 @@ keybindings.newOneTapMetaBinding(keybindings.keys.rightShift, {'shift'}, '0')
 keybindings.newOneTapMetaBinding(keybindings.keys.ctrl, {}, 'escape')
 
 
--- Vim mode (Karabiner's ubiquitous-vim replacement)
+---- Vim mode (Karabiner's ubiquitous-vim replacement)
 
 require("vim")
 keybindings.newOneTapMetaBinding(keybindings.keys.rightCmd, {'ctrl'}, '[')
@@ -145,8 +145,6 @@ function switchLayout()
       {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
     }
     layoutName = "Laptop layout"
-    -- Also change the Karabiner config since usbWatcher is unreliable:
-    switchOffErgodox()
   elseif screens[1]:name() == "Thunderbolt Display" then
     local leftTB = hs.screen.allScreens()[1]
     local rightTB = hs.screen.allScreens()[3]
@@ -158,7 +156,6 @@ function switchLayout()
       {"Emacs", nil, rightTB, hs.layout.maximized, nil, nil},
     }
     layoutName = "Thunderbolt layout"
-    switchOnErgodox()
   end
   hs.layout.apply(layout)
   hs.alert.show(layoutName)
@@ -242,31 +239,3 @@ hs.hotkey.bind(mash_app, "space", function()
   resetChoices()
   chooser:show()
 end)
-
-
----- Karabiner profile auto-switching
-
-function switchOnErgodox()
-  print("switchOnErgodox")
-  hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 1')
-end
-
-function switchOffErgodox()
-  print("switchOffErgodox")
-  hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 0')
-end
-
--- Source: https://github.com/tekezo/Karabiner/issues/354
-function usbDeviceCallback(data)
-  print("usbDeviceCallback", hs.inspect.inspect(data))
-  if (data["productName"] == "ErgoDox EZ") then
-    if (data["eventType"] == "added") then
-      switchOnErgodox()
-    elseif (data["eventType"] == "removed") then
-      switchOffErgodox()
-    end
-  end
-end
-
-local usbWatcher = hs.usb.watcher.new(usbDeviceCallback)
-usbWatcher:start()
