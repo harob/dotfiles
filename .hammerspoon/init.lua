@@ -27,6 +27,10 @@ keybindings.newOneTapMetaBinding(keybindings.keys.leftShift, {'shift'}, '9')
 keybindings.newOneTapMetaBinding(keybindings.keys.rightShift, {'shift'}, '0')
 keybindings.newOneTapMetaBinding(keybindings.keys.ctrl, {}, 'escape')
 
+keybindings.new("h", {"ctrl"}, "delete", {}, true)
+-- C-w should work out-the-box in all OSX apps, but for some reason it doesn't in google docs, so remap it:
+keybindings.new("w", {"ctrl"}, "delete", {"alt"}, true)
+
 
 ---- Vim mode (Karabiner's ubiquitous-vim replacement)
 
