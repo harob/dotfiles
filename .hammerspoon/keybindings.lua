@@ -116,6 +116,7 @@ end
 
 local function oneTapMetaBinding(oldKeyCode, newKeyMod, newKeyCode)
    local pressed = false
+   local pressedAt = 0
    local tap = eventtap.new({keyDown, keyUp, flagsChanged}, function(event)
       local eventType = eventtap.event.types[event:getType()]
       -- I'm not sure why, but we have to listen for the keyUp event and pass it through or hammerspoon gets confused.
@@ -129,10 +130,15 @@ local function oneTapMetaBinding(oldKeyCode, newKeyMod, newKeyCode)
       end
       if eventHasMod(event, keyToMod[oldKeyCode]) then
          pressed = true
+         pressedAt = hs.timer.secondsSinceEpoch()
          return false
       end
       if not pressed then
          return false
+      end
+      if pressedAt + 1.0 < hs.timer.secondsSinceEpoch() then
+        pressed = false
+        return false
       end
       -- If we reach here, the modifier key has been pressed and released without
       -- any other keys being pressed
