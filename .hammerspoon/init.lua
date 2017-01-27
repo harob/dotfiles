@@ -142,18 +142,19 @@ function switchLayout()
   if #screens == 1 then
     local laptop = "Color LCD"
     layout = {
-      {"iTerm", nil, laptop, hs.layout.maximized, nil, nil},
+      {"iTerm2", nil, laptop, hs.layout.maximized, nil, nil},
       {"iTerm-ssh", nil, laptop, hs.layout.maximized, nil, nil},
       {"Slack", nil, laptop, hs.layout.maximized, nil, nil},
       {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
       {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
     }
     layoutName = "Laptop layout"
-  elseif screens[1]:name() == "Thunderbolt Display" then
-    local leftTB = hs.screen.allScreens()[1]
-    local rightTB = hs.screen.allScreens()[3]
+  elseif screens[1]:name() == "Thunderbolt Display" or screens[1]:name() == "LG UltraFine" then
+    -- TODO: Sort screens properly by x-index:
+    local leftTB = hs.screen.allScreens()[3]
+    local rightTB = hs.screen.allScreens()[1]
     layout = {
-      {"iTerm", nil, leftTB, hs.layout.left50, nil, nil},
+      {"iTerm2", nil, leftTB, hs.layout.left50, nil, nil},
       {"iTerm-ssh", nil, leftTB, hs.layout.left50, nil, nil},
       {"Slack", nil, leftTB, hs.layout.left50, nil, nil},
       {"Google Chrome", nil, leftTB, hs.layout.right50, nil, nil},
@@ -192,7 +193,7 @@ local chooser = nil
 local commands = {
   {
     ['text'] = 'Add TODO',
-    ['subText'] = 'Prepend to tasks.txt',
+    ['subText'] = 'Prepend to inbox.org',
     ['command'] = 'prepend',
   },
 }
@@ -209,24 +210,24 @@ local function resetChoices()
   chooser:choices(choices)
 end
 
-local function appendCallbackFn (exitCode, stdOut, stdErr)
+local function prependCallbackFn (exitCode, stdOut, stdErr)
   if exitCode > 0 then
-    print("Append failure", exitCode, stdOut, stdErr)
+    print("Prepend failure", exitCode, stdOut, stdErr)
   end
 end
 
-local function append(text)
-  print("append", text)
+local function prepend(text)
+  print("prepend", text)
   -- sed -i '1i Text to prepend' file.txt
   hs.task.new("/usr/local/bin/gsed",
-              appendCallbackFn,
-              {"-i", "1i ** TODO " .. text .. "", os.getenv("HOME") .. "/Dropbox/notes/tasks.org"}
+              prependCallbackFn,
+              {"-i", "1i ** TODO " .. text .. "", os.getenv("HOME") .. "/Dropbox/notes/inbox.org"}
   ):start()
 end
 
 local function choiceCallback(choice)
   if choice.command == 'prepend' then
-    append(chooser:query())
+    prepend(chooser:query())
   else
     print("Unknown choice!")
   end
