@@ -1,0 +1,91 @@
+{
+    "global": {
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true
+    },
+    "profiles": [
+        {
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 1027,
+                        "vendor_id": 4176
+                    },
+                    "ignore": true
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 4871,
+                        "vendor_id": 65261
+                    },
+                    "ignore": true
+                }
+            ],
+            "fn_function_keys": {
+                "f1": "display_brightness_decrement",
+                "f10": "mute",
+                "f11": "volume_decrement",
+                "f12": "volume_increment",
+                "f2": "display_brightness_increment",
+                "f3": "mission_control",
+                "f4": "launchpad",
+                "f5": "illumination_decrement",
+                "f6": "illumination_increment",
+                "f7": "rewind",
+                "f8": "play_or_pause",
+                "f9": "fastforward"
+            },
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": {
+                "a": "a",
+                "b": "x",
+                "backslash": "backslash",
+                "c": "j",
+                "caps_lock": "left_control",
+                "close_bracket": "equal_sign",
+                "comma": "w",
+                "d": "e",
+                "e": "period",
+                "equal_sign": "close_bracket",
+                "f": "u",
+                "g": "i",
+                "h": "d",
+                "hyphen": "open_bracket",
+                "i": "c",
+                "j": "h",
+                "k": "t",
+                "l": "n",
+                "m": "m",
+                "n": "b",
+                "o": "r",
+                "open_bracket": "slash",
+                "p": "l",
+                "period": "v",
+                "q": "quote",
+                "quote": "hyphen",
+                "r": "p",
+                "s": "o",
+                "semicolon": "s",
+                "slash": "z",
+                "t": "y",
+                "u": "g",
+                "v": "k",
+                "w": "comma",
+                "x": "q",
+                "y": "f",
+                "z": "semicolon"
+            },
+            "virtual_hid_keyboard": {
+                "caps_lock_delay_milliseconds": 0,
+                "keyboard_type": "ansi"
+            }
+        }
+    ]
+}

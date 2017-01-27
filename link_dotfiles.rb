@@ -25,4 +25,6 @@ Dir.foreach(DOTDIR) do |file|
 end
 
 `rm Library/KeyBindings/DefaultKeyBinding.dict`
-`cp dotfiles/DefaultKeyBinding.dict Library/KeyBindings/`
+`cp #{DOTDIR}/DefaultKeyBinding.dict Library/KeyBindings/`
+
+`cp #{DOTDIR}/karabiner.json .config/karabiner/`
