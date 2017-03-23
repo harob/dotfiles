@@ -1,5 +1,5 @@
 {:user {:plugins [
-                  [cider/cider-nrepl "0.8.2"]
+                  ; [cider/cider-nrepl "0.8.2"]
                   ; [lein-ancient "0.5.4"]
                   ; [lein-clojars "0.9.1"]
                   ; [lein-exec "0.3.1"]
@@ -22,16 +22,15 @@
                      ; (require '[vinyasa.inject :as inj])
                      ; (inj/inject 'clojure.core
                      ;             '[
-                                   ; [alex-and-georges.debug-repl debug-repl]
-                                   ; [clojure.stacktrace e print-stack-trace]
-                                   ; [clojure.tools.trace trace-ns trace-vars untrace-ns untrace-vars]
-                                   ; [criterium.core bench quick-bench]
-                                   ; [vinyasa.inject inject]
-                                   ; [vinyasa.pull pull]
-                                   ; [vinyasa.lein lein]
-                                   ; [vinyasa.reimport reimport]
-                                   ; ])
+                     ; [alex-and-georges.debug-repl debug-repl]
+                     ; [clojure.stacktrace e print-stack-trace]
+                     ; [clojure.tools.trace trace-ns trace-vars untrace-ns untrace-vars]
+                     ; [criterium.core bench quick-bench]
+                     ; [vinyasa.inject inject]
+                     ; [vinyasa.pull pull]
+                     ; [vinyasa.lein lein]
+                     ; [vinyasa.reimport reimport]
+                     ; ])
                      ; (require 'spyscope.core) ; for the reader macro #spy/d, available in all namespaces
-                     (require '[clojure.pprint :refer [pprint pp]])
-                     ]
+                     (require '[clojure.pprint :refer [pprint pp]])]
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}}}

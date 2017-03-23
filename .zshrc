@@ -81,3 +81,5 @@ unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 autoload -U zmv
 
 source /Users/harry/.iterm2_shell_integration.zsh
+
+ssh-add

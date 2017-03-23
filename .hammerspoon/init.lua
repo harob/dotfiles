@@ -46,7 +46,7 @@ local mash_app = {"ctrl", "cmd"}
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
 hs.hotkey.bind(mash_app, 'M', function() hs.application.launchOrFocus('Emacs') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
-hs.hotkey.bind(mash_app, 'H', function() hs.application.launchOrFocus('iTerm-ssh') end)
+hs.hotkey.bind(mash_app, 'H', function() hs.application.launchOrFocus('iTerm') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
 
 
