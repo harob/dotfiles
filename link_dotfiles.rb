@@ -28,3 +28,7 @@ end
 `cp #{DOTDIR}/DefaultKeyBinding.dict Library/KeyBindings/`
 
 `cp #{DOTDIR}/karabiner.json .config/karabiner/`
+
+`cp #{DOTDIR}/harry.gitnote.plist Library/LaunchAgents/harry.gitnote.plist`
+`launchctl unload Library/LaunchAgents/harry.gitnote.plist || true`
+`launchctl load Library/LaunchAgents/harry.gitnote.plist`

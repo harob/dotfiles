@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- From https://jcomo.me/2015/11/28/using-launchctl-as-an-anacron-replacement/ -->
+<!-- This is copied into place and loaded into launchd by link_dotfiles.rb.-->
+<!-- You can manually test it with `launchctl start harry.gitnote` -->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>harry.gitnote</string>
+    <!-- <key>KeepAlive</key> -->
+    <!-- <dict> -->
+    <!--   <key>SuccessfulExit</key> -->
+    <!--   <false /> -->
+    <!-- </dict> -->
+    <!-- <key>ThrottleInterval</key> -->
+    <!-- <integer>60</integer> -->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Minute</key>
+      <integer>0</integer>
+      <key>Hour</key>
+      <integer>0</integer>
+    </dict>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/harry/dotfiles/gitnote.sh</string>
+      <!-- <string>/usr/local/bin/brew</string> -->
+      <!-- <string>list</string> -->
+    </array>
+    <key>StandardOutPath</key>
+    <string>/usr/local/var/log/gitnote/stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/usr/local/var/log/gitnote/stderr.log</string>
+  </dict>
+</plist>
