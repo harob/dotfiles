@@ -5,6 +5,7 @@ local eventtap = require "hs.eventtap"
 local keycodes = require "hs.keycodes"
 local hotkey = require "hs.hotkey"
 local log = hs.logger.new("init", "debug")
+local timer = require "hs.timer"
 
 local keyDown = eventtap.event.types.keyDown
 local keyUp = eventtap.event.types.keyUp

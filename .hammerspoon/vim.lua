@@ -359,20 +359,11 @@ end)
 
 -- }}}1
 
-hs.window.filter.new('Emacs')-- {{{1
-    :subscribe(hs.window.filter.windowFocused,function()
-        normal:exit()
-        enterNormal:disable()
-    end)
-    :subscribe(hs.window.filter.windowUnfocused,function()
-        enterNormal:enable()
-    end)-- }}}1
-
-hs.window.filter.new('iTerm')-- {{{1
-    :subscribe(hs.window.filter.windowFocused,function()
-        normal:exit()
-        enterNormal:disable()
-    end)
-    :subscribe(hs.window.filter.windowUnfocused,function()
-        enterNormal:enable()
-    end)-- }}}1
+-- hs.window.filter.new({'Emacs', 'iTerm'})-- {{{1
+--     :subscribe(hs.window.filter.windowFocused,function()
+--         normal:exit()
+--         enterNormal:disable()
+--     end)
+--     :subscribe(hs.window.filter.windowUnfocused,function()
+--         enterNormal:enable()
+--     end)-- }}}1

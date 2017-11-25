@@ -8,6 +8,7 @@
                   ; [lein-try "0.4.1"]
                   ]
         :dependencies [
+                       [com.stuartsierra/frequencies "0.1.0"]
                        ; [criterium "0.4.3"]
                        ; [im.chit/vinyasa "0.1.8"]
                        ; [leiningen "2.3.4"]
