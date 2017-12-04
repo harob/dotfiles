@@ -29,7 +29,6 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
 alias l='ls -alh'
 alias v='mvim'
 alias e='memacs'
-alias hdfs='hadoop fs'
 alias be='bundle exec'
 alias bi='bundle install'
 alias bef='bundle exec fez'
@@ -83,3 +82,5 @@ autoload -U zmv
 source /Users/harry/.iterm2_shell_integration.zsh
 
 ssh-add
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -55,3 +55,4 @@ alias ll='ls -al'
 alias hdfs='hadoop fs'
 alias psg='ps -ef | grep'
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
