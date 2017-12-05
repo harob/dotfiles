@@ -81,6 +81,7 @@ autoload -U zmv
 
 source /Users/harry/.iterm2_shell_integration.zsh
 
-ssh-add
+ssh-add 2> /dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
