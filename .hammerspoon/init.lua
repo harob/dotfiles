@@ -193,8 +193,8 @@ local chooser = nil
 local commands = {
   {
     ['text'] = 'Add TODO',
-    ['subText'] = 'Prepend to inbox.org',
-    ['command'] = 'prepend',
+    ['subText'] = 'Append to inbox.org',
+    ['command'] = 'append',
   },
 }
 
@@ -210,24 +210,17 @@ local function resetChoices()
   chooser:choices(choices)
 end
 
-local function prependCallbackFn (exitCode, stdOut, stdErr)
-  if exitCode > 0 then
-    print("Prepend failure", exitCode, stdOut, stdErr)
-  end
-end
-
-local function prepend(text)
-  print("prepend", text)
-  -- sed -i '1i Text to prepend' file.txt
-  hs.task.new("/usr/local/bin/gsed",
-              prependCallbackFn,
-              {"-i", "1i ** TODO " .. text .. "", os.getenv("HOME") .. "/Dropbox/notes/inbox.org"}
-  ):start()
+local function append(text)
+  print("append", text)
+  -- TODO(harry)
+  local f = io.open(os.getenv("HOME") .. "/Dropbox/notes/inbox.org", "a")
+  f:write("** TODO " .. text .. "\n")
+  f:close()
 end
 
 local function choiceCallback(choice)
-  if choice.command == 'prepend' then
-    prepend(chooser:query())
+  if choice.command == 'append' then
+    append(chooser:query())
   else
     print("Unknown choice!")
   end
