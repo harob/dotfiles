@@ -23,10 +23,6 @@ hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/.hammerspoon/", reloadConfig)
 
 keybindings = require "keybindings"
 
-keybindings.newOneTapMetaBinding(keybindings.keys.leftShift, {'shift'}, '9')
-keybindings.newOneTapMetaBinding(keybindings.keys.rightShift, {'shift'}, '0')
-keybindings.newOneTapMetaBinding(keybindings.keys.ctrl, {}, 'escape')
-
 keybindings.new("h", {"ctrl"}, "delete", {}, true)
 -- C-w should work out-the-box in all OSX apps, but for some reason it doesn't in google docs, so remap it:
 keybindings.new("w", {"ctrl"}, "delete", {"alt"}, true)
@@ -214,7 +210,7 @@ local function append(text)
   print("append", text)
   -- TODO(harry)
   local f = io.open(os.getenv("HOME") .. "/Dropbox/notes/inbox.org", "a")
-  f:write("** TODO " .. text .. "\n")
+  f:write("\n** TODO " .. text)
   f:close()
 end
 
