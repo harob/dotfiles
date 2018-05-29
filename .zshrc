@@ -85,3 +85,33 @@ ssh-add 2> /dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
+# Slack dark mode -- from https://github.com/laCour/slack-night-mode/issues/73#issuecomment-355234417
+SLACK_PATH='/Applications/Slack.app/Contents/Resources'
+CSS_URL='https://raw.githubusercontent.com/laCour/slack-night-mode/master/css/raw/black.css'
+
+if ! grep -q "$CSS_URL" "${SLACK_PATH}"/app.asar.unpacked/src/static/ssb-interop.js; then
+bash -c "cat >> \"${SLACK_PATH}\"/app.asar.unpacked/src/static/ssb-interop.js" << EOF
+document.addEventListener('DOMContentLoaded', function() {
+ $.ajax({
+   url: '${CSS_URL}',
+   success: function(css) {
+     \$("<style></style>").appendTo('head').html(css)
+   }
+ });
+});
+EOF
+fi
+
+if ! grep -q "$CSS_URL" "${SLACK_PATH}"/app.asar.unpacked/src/static/index.js; then
+bash -c "cat >> \"${SLACK_PATH}\"/app.asar.unpacked/src/static/index.js" << EOF
+document.addEventListener('DOMContentLoaded', function() {
+ $.ajax({
+   url: '${CSS_URL}',
+   success: function(css) {
+     \$("<style></style>").appendTo('head').html(css)
+   }
+ });
+});
+EOF
+fi
