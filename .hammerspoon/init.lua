@@ -42,7 +42,7 @@ local mash_app = {"ctrl", "cmd"}
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
 hs.hotkey.bind(mash_app, 'M', function() hs.application.launchOrFocus('Emacs') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
-hs.hotkey.bind(mash_app, 'H', function() hs.application.launchOrFocus('iTerm') end)
+hs.hotkey.bind(mash_app, 'H', function() hs.application.launchOrFocus('Superhuman') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
 
 
@@ -139,22 +139,22 @@ function switchLayout()
     local laptop = "Color LCD"
     layout = {
       {"iTerm2", nil, laptop, hs.layout.maximized, nil, nil},
-      {"iTerm-ssh", nil, laptop, hs.layout.maximized, nil, nil},
       {"Slack", nil, laptop, hs.layout.maximized, nil, nil},
       {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Superhuman", nil, laptop, hs.layout.maximized, nil, nil},
       {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
     }
     layoutName = "Laptop layout"
   elseif screens[1]:name() == "Thunderbolt Display" or screens[1]:name() == "LG UltraFine" then
     -- TODO: Sort screens properly by x-index:
-    local leftTB = hs.screen.allScreens()[3]
-    local rightTB = hs.screen.allScreens()[1]
+    local leftMonitor = hs.screen.allScreens()[1]
+    local rightMonitor = hs.screen.allScreens()[3]
     layout = {
-      {"iTerm2", nil, leftTB, hs.layout.left50, nil, nil},
-      {"iTerm-ssh", nil, leftTB, hs.layout.left50, nil, nil},
-      {"Slack", nil, leftTB, hs.layout.left50, nil, nil},
-      {"Google Chrome", nil, leftTB, hs.layout.right50, nil, nil},
-      {"Emacs", nil, rightTB, hs.layout.maximized, nil, nil},
+      {"iTerm2", nil, leftMonitor, hs.layout.left50, nil, nil},
+      {"Slack", nil, leftMonitor, hs.layout.left50, nil, nil},
+      {"Google Chrome", nil, leftMonitor, hs.layout.right50, nil, nil},
+      {"Superhuman", nil, leftMonitor, hs.layout.right50, nil, nil},
+      {"Emacs", nil, rightMonitor, hs.layout.maximized, nil, nil},
     }
     layoutName = "Thunderbolt layout"
   end
