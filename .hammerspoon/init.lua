@@ -28,12 +28,6 @@ keybindings.new("h", {"ctrl"}, "delete", {}, true)
 keybindings.new("w", {"ctrl"}, "delete", {"alt"}, true)
 
 
----- Vim mode (Karabiner's ubiquitous-vim replacement)
-
-require("vim")
-keybindings.newOneTapMetaBinding(keybindings.keys.rightCmd, {'ctrl'}, '[')
-
-
 ---- App switcher (Slate replacement)
 
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
