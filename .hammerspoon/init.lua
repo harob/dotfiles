@@ -19,15 +19,6 @@ end
 -- hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/.hammerspoon/", reloadConfig):start()
 
 
----- Essential key remaps (Karabiner replacement)
-
-keybindings = require "keybindings"
-
-keybindings.new("h", {"ctrl"}, "delete", {}, true)
--- C-w should work out-the-box in all OSX apps, but for some reason it doesn't in google docs, so remap it:
-keybindings.new("w", {"ctrl"}, "delete", {"alt"}, true)
-
-
 ---- App switcher (Slate replacement)
 
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
