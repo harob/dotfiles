@@ -34,4 +34,5 @@
                      ; ])
                      ; (require 'spyscope.core) ; for the reader macro #spy/d, available in all namespaces
                      (require '[clojure.pprint :refer [pprint pp]])]
+        :middleware [cider-nrepl.plugin/middleware]
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}}}

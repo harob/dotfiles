@@ -16,7 +16,7 @@ function reloadConfig(files)
         hs.reload()
     end
 end
-hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/.hammerspoon/", reloadConfig):start()
+-- hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/.hammerspoon/", reloadConfig):start()
 
 
 ---- Essential key remaps (Karabiner replacement)
@@ -34,7 +34,7 @@ keybindings.new("w", {"ctrl"}, "delete", {"alt"}, true)
 local mash_app = {"ctrl", "cmd"}
 
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
-hs.hotkey.bind(mash_app, 'M', function() hs.application.launchOrFocus('Emacs') end)
+hs.hotkey.bind(mash_app, 'M', function() hs.application.launchOrFocus('/Applications/Emacs.app') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
 hs.hotkey.bind(mash_app, 'H', function() hs.application.launchOrFocus('Superhuman') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
@@ -74,7 +74,6 @@ local positions = {
   chat = {x=0.5, y=0, w=0.35, h=0.5}
 }
 
--- TODO(harry) The rotation between the various units doesn't work on an MBP screen
 local grid = {
   {key="f", units={positions.upper50Left50}},
   {key="g", units={positions.upper50}},
@@ -157,22 +156,6 @@ function switchLayout()
 end
 
 hs.hotkey.bind(mash, "r", function() switchLayout() end)
-hs.hotkey.bind(mash, "p", function() switchLayout() end)
-hs.hotkey.bind(mash, "o", function() switchLayout() end)
-
-local lastNumberOfScreens = #hs.screen.allScreens()
-
-function onScreensChanged()
-  local numScreens = #hs.screen.allScreens()
-
-  if lastNumberOfScreens ~= numScreens then
-    switchLayout()
-    lastNumberOfScreens = numScreens
-  end
-end
-
-local screenWatcher = hs.screen.watcher.new(onScreensChanged)
-screenWatcher:start()
 
 
 ---- GTD task taker
