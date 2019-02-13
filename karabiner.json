@@ -21,7 +21,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "org.gnu.Emacs"
+                                          "org.gnu.Emacs",
+                                          "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -169,9 +170,18 @@
                         "product_id": 4871,
                         "vendor_id": 65261
                     },
-                    "ignore": true,
+                    "ignore": false,
                     "manipulate_caps_lock_led": false,
-                    "simple_modifications": []
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "e"
+                            },
+                            "to": {
+                                "key_code": "e"
+                            }
+                        }
+                    ]
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -179,45 +189,302 @@
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": false,
-                        "product_id": 37904,
-                        "vendor_id": 1423
+                        "product_id": 636,
+                        "vendor_id": 1452
                     },
                     "ignore": false,
-                    "manipulate_caps_lock_led": false,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "left_command"
-                            },
-                            "to": {
-                                "key_code": "left_option"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "left_option"
-                            },
-                            "to": {
-                                "key_code": "left_command"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "right_command"
-                            },
-                            "to": {
-                                "key_code": "right_option"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "right_option"
-                            },
-                            "to": {
-                                "key_code": "right_command"
-                            }
-                        }
-                    ]
+                    "manipulate_caps_lock_led": true,
+                  "simple_modifications": [
+                    {
+                      "from": {
+                        "key_code": "a"
+                      },
+                      "to": {
+                        "key_code": "a"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "b"
+                      },
+                      "to": {
+                        "key_code": "x"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "backslash"
+                      },
+                      "to": {
+                        "key_code": "backslash"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "c"
+                      },
+                      "to": {
+                        "key_code": "j"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "close_bracket"
+                      },
+                      "to": {
+                        "key_code": "equal_sign"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "comma"
+                      },
+                      "to": {
+                        "key_code": "w"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "d"
+                      },
+                      "to": {
+                        "key_code": "e"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "e"
+                      },
+                      "to": {
+                        "key_code": "period"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "equal_sign"
+                      },
+                      "to": {
+                        "key_code": "close_bracket"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "f"
+                      },
+                      "to": {
+                        "key_code": "u"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "g"
+                      },
+                      "to": {
+                        "key_code": "i"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "h"
+                      },
+                      "to": {
+                        "key_code": "d"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "hyphen"
+                      },
+                      "to": {
+                        "key_code": "open_bracket"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "i"
+                      },
+                      "to": {
+                        "key_code": "c"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "j"
+                      },
+                      "to": {
+                        "key_code": "h"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "k"
+                      },
+                      "to": {
+                        "key_code": "t"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "l"
+                      },
+                      "to": {
+                        "key_code": "n"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "m"
+                      },
+                      "to": {
+                        "key_code": "m"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "n"
+                      },
+                      "to": {
+                        "key_code": "b"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "o"
+                      },
+                      "to": {
+                        "key_code": "r"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "open_bracket"
+                      },
+                      "to": {
+                        "key_code": "slash"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "p"
+                      },
+                      "to": {
+                        "key_code": "l"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "period"
+                      },
+                      "to": {
+                        "key_code": "v"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "q"
+                      },
+                      "to": {
+                        "key_code": "quote"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "quote"
+                      },
+                      "to": {
+                        "key_code": "hyphen"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "r"
+                      },
+                      "to": {
+                        "key_code": "p"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "s"
+                      },
+                      "to": {
+                        "key_code": "o"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "semicolon"
+                      },
+                      "to": {
+                        "key_code": "s"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "slash"
+                      },
+                      "to": {
+                        "key_code": "z"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "t"
+                      },
+                      "to": {
+                        "key_code": "y"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "u"
+                      },
+                      "to": {
+                        "key_code": "g"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "v"
+                      },
+                      "to": {
+                        "key_code": "k"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "w"
+                      },
+                      "to": {
+                        "key_code": "comma"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "x"
+                      },
+                      "to": {
+                        "key_code": "q"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "y"
+                      },
+                      "to": {
+                        "key_code": "f"
+                      }
+                    },
+                    {
+                      "from": {
+                        "key_code": "z"
+                      },
+                      "to": {
+                        "key_code": "semicolon"
+                      }
+                    }
+
+                  ]
                 }
             ],
             "fn_function_keys": [
@@ -321,294 +588,6 @@
             "name": "Default profile",
             "selected": true,
             "simple_modifications": [
-                {
-                    "from": {
-                        "key_code": "a"
-                    },
-                    "to": {
-                        "key_code": "a"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "b"
-                    },
-                    "to": {
-                        "key_code": "x"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "backslash"
-                    },
-                    "to": {
-                        "key_code": "backslash"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "c"
-                    },
-                    "to": {
-                        "key_code": "j"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "close_bracket"
-                    },
-                    "to": {
-                        "key_code": "equal_sign"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "comma"
-                    },
-                    "to": {
-                        "key_code": "w"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "d"
-                    },
-                    "to": {
-                        "key_code": "e"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "e"
-                    },
-                    "to": {
-                        "key_code": "period"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "equal_sign"
-                    },
-                    "to": {
-                        "key_code": "close_bracket"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "f"
-                    },
-                    "to": {
-                        "key_code": "u"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "g"
-                    },
-                    "to": {
-                        "key_code": "i"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "h"
-                    },
-                    "to": {
-                        "key_code": "d"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "hyphen"
-                    },
-                    "to": {
-                        "key_code": "open_bracket"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "i"
-                    },
-                    "to": {
-                        "key_code": "c"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "j"
-                    },
-                    "to": {
-                        "key_code": "h"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "k"
-                    },
-                    "to": {
-                        "key_code": "t"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "l"
-                    },
-                    "to": {
-                        "key_code": "n"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "m"
-                    },
-                    "to": {
-                        "key_code": "m"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "n"
-                    },
-                    "to": {
-                        "key_code": "b"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "o"
-                    },
-                    "to": {
-                        "key_code": "r"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "open_bracket"
-                    },
-                    "to": {
-                        "key_code": "slash"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "p"
-                    },
-                    "to": {
-                        "key_code": "l"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "period"
-                    },
-                    "to": {
-                        "key_code": "v"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "q"
-                    },
-                    "to": {
-                        "key_code": "quote"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "quote"
-                    },
-                    "to": {
-                        "key_code": "hyphen"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "r"
-                    },
-                    "to": {
-                        "key_code": "p"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "s"
-                    },
-                    "to": {
-                        "key_code": "o"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "semicolon"
-                    },
-                    "to": {
-                        "key_code": "s"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "slash"
-                    },
-                    "to": {
-                        "key_code": "z"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "t"
-                    },
-                    "to": {
-                        "key_code": "y"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "u"
-                    },
-                    "to": {
-                        "key_code": "g"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "v"
-                    },
-                    "to": {
-                        "key_code": "k"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "w"
-                    },
-                    "to": {
-                        "key_code": "comma"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "x"
-                    },
-                    "to": {
-                        "key_code": "q"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "y"
-                    },
-                    "to": {
-                        "key_code": "f"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "z"
-                    },
-                    "to": {
-                        "key_code": "semicolon"
-                    }
-                }
             ],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
