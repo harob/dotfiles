@@ -1,56 +1,43 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
+PROMPT='%F{magenta}[%*] %F{yellow}%n %F{cyan}%c %F{green}$%f '
+# RPROMPT=' %F{magenta}[%*]%f'
 
-# Comment this out to disable weekly oh-my-zsh auto-update checks
- DISABLE_AUTO_UPDATE="true"
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
+export PATH=$HOME/workspace/scripts:$PATH
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git cap gem heroku lein zsh-syntax-highlighting osx)
+# Go
+export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
+export GOPATH=$HOME/workspace/external_codebases/gocode
 
-source $ZSH/oh-my-zsh.sh
+# EC2
+# export EC2_HOME=/Users/harry/workspace/external_codebases/ec2-api-tools-1.6.5.4
+# export PATH=/Users/harry/workspace/external_codebases/ec2-api-tools-1.6.5.4/bin:$PATH
 
-# Customize to your needs...
+# AWS
+# source /usr/local/bin/aws_zsh_completer.sh
 
-# VI prompt
-vi_mode_indicator='$'
-PROMPT='%F{yellow}%n@%m %F{cyan}%c%F{green} $vi_mode_indicator %f'
-RPROMPT=' %F{magenta}[%*]%f'
-function zle-line-init zle-keymap-select() {
-  vi_mode_indicator="${${KEYMAP/vicmd/☯}/(main|viins)/$}"
-  zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
-
-[[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
+# export NODE_PATH="/usr/local/lib/node_modules"
 
 alias l='ls -alh'
 alias v='mvim'
 alias e='memacs'
-alias be='bundle exec'
-alias bi='bundle install'
-alias bef='bundle exec fez'
-alias ber='bundle exec rake'
+alias g='git'
 
 # fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
 eval "$(fasd --init auto)"
 
-# Say how long a command took, if it took more than N seconds
-export REPORTTIME=15
+export REPORTTIME=15 # Say how long a command took, if it took more than N seconds
 
 # Zsh spelling correction options
 #setopt CORRECT
 setopt DVORAK
 
-# Prompts for confirmation after 'rm *' etc
-# Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
-setopt RM_STAR_WAIT
-
 # Vi mode!
 bindkey -v
-bindkey "^?" backward-delete-char                # Allow for deleting characters in vi mode
+bindkey "^?" backward-delete-char
+bindkey '^H' backward-delete-char
+bindkey '^W' backward-kill-word
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey "^P" vi-up-line-or-history
 bindkey "^N" vi-down-line-or-history
@@ -60,9 +47,23 @@ autoload -U edit-command-line # We want to use 'v' in normal mode to edit and ex
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
 export KEYTIMEOUT=1
-# Useful on boxes where there is no good alternative to the ESC button. A better solution is to use Caps Lock
-# as Ctrl when held down and ESC when tapped.
-#bindkey "hh" vi-cmd-mode
+
+# From https://unix.stackexchange.com/a/344028
+function zle-keymap-select zle-line-init {
+    # change cursor shape in iTerm2
+    case $KEYMAP in
+        vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
+        viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
+    esac
+    zle reset-prompt
+    zle -R
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
+function zle-line-finish {
+    print -n -- "\E]50;CursorShape=0\C-G"  # block cursor
+}
+zle -N zle-line-finish
 
 export EDITOR='vim'
 
@@ -71,8 +72,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 [[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
 
-unsetopt correct_all
-unsetopt rm_star_wait
+unsetopt CORRECT_ALL
+unsetopt RM_STAR_WAIT
 setopt INC_APPEND_HISTORY  # save history as commands are entered, not when shell exits
 setopt HIST_IGNORE_DUPS    # don't save duplicate commmands in history
 unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
@@ -89,7 +90,6 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 # Slack dark mode -- from https://github.com/laCour/slack-night-mode/issues/73#issuecomment-355234417
 SLACK_PATH='/Applications/Slack.app/Contents/Resources'
 CSS_URL='https://raw.githubusercontent.com/laCour/slack-night-mode/master/css/raw/black.css'
-
 if ! grep -q "$CSS_URL" "${SLACK_PATH}"/app.asar.unpacked/src/static/ssb-interop.js; then
 bash -c "cat >> \"${SLACK_PATH}\"/app.asar.unpacked/src/static/ssb-interop.js" << EOF
 document.addEventListener('DOMContentLoaded', function() {
@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 EOF
 fi
-
 if ! grep -q "$CSS_URL" "${SLACK_PATH}"/app.asar.unpacked/src/static/index.js; then
 bash -c "cat >> \"${SLACK_PATH}\"/app.asar.unpacked/src/static/index.js" << EOF
 document.addEventListener('DOMContentLoaded', function() {
@@ -115,3 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 EOF
 fi
+
+[[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
+
+# Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
