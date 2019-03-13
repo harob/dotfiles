@@ -24,6 +24,8 @@ Dir.foreach(DOTDIR) do |file|
   end
 end
 
+# TODO(harry) This may no longer exist in Mojave:
+`mkdir -p Library/KeyBindings`
 `rm Library/KeyBindings/DefaultKeyBinding.dict`
 `cp #{DOTDIR}/DefaultKeyBinding.dict Library/KeyBindings/`
 

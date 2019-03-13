@@ -1,10 +1,16 @@
 PROMPT='%F{magenta}[%*] %F{yellow}%n %F{cyan}%c %F{green}$%f '
 # RPROMPT=' %F{magenta}[%*]%f'
 
+export HISTFILE=~/.zsh_history
+export SAVEHIST=100000
+setopt inc_append_history share_history
+
+
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/workspace/scripts:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH=/usr/local/opt/python@2/libexec/bin:$PATH
 
 # Go
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
@@ -38,7 +44,7 @@ bindkey -v
 bindkey "^?" backward-delete-char
 bindkey '^H' backward-delete-char
 bindkey '^W' backward-kill-word
-bindkey '^R' history-incremental-pattern-search-backward
+# bindkey '^R' history-incremental-pattern-search-backward # This is defined elsewhere by fzf
 bindkey "^P" vi-up-line-or-history
 bindkey "^N" vi-down-line-or-history
 bindkey "^A" beginning-of-line

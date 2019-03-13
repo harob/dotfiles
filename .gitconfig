@@ -1,6 +1,6 @@
 [user]
-  name = Harry
-  email = harry.robertson@gmail.com
+	name = Harry Robertson
+	email = harry@liftoff.io
 [color]
   diff = auto
   status = auto
@@ -8,7 +8,7 @@
   interactive = auto
   ui = auto
 [branch]
-  autosetuprebase = always
+	autosetuprebase = always
 [push]
   default = tracking
 [gc]
@@ -34,3 +34,5 @@
 [core]
 	excludesfile = /Users/harry/.gitignore
 	editor = /usr/bin/vim
+[pull]
+	rebase = true

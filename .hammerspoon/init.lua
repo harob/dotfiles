@@ -27,7 +27,6 @@ local mash_app = {"ctrl", "cmd"}
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
 hs.hotkey.bind(mash_app, 'M', function() hs.application.launchOrFocus('/Applications/Emacs.app') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
-hs.hotkey.bind(mash_app, 'H', function() hs.application.launchOrFocus('Superhuman') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
 
 
@@ -131,8 +130,8 @@ function switchLayout()
     layoutName = "Laptop layout"
   elseif screens[1]:name() == "Thunderbolt Display" or screens[1]:name() == "LG UltraFine" then
     -- TODO: Sort screens properly by x-index:
-    local leftMonitor = hs.screen.allScreens()[3]
-    local rightMonitor = hs.screen.allScreens()[1]
+    local leftMonitor = hs.screen.allScreens()[1]
+    local rightMonitor = hs.screen.allScreens()[3]
     layout = {
       {"iTerm2", nil, leftMonitor, hs.layout.left50, nil, nil},
       {"Slack", nil, leftMonitor, hs.layout.left50, nil, nil},
