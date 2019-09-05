@@ -97,6 +97,8 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
+eval "$(pyenv init -)"
+
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
 # Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!

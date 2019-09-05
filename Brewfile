@@ -1,0 +1,50 @@
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "railwaycat/emacsmacport"
+brew "awscli"
+brew "cloc"
+brew "coreutils"
+brew "fasd"
+brew "fzf"
+brew "git"
+brew "go"
+brew "leiningen"
+brew "mas"
+brew "node"
+brew "postgresql", restart_service: true
+brew "pyenv"
+brew "python@2"
+brew "ruby-build"
+brew "rbenv"
+brew "redis", restart_service: true
+brew "ripgrep"
+brew "yarn"
+brew "yasm"
+brew "zsh"
+brew "zsh-syntax-highlighting"
+cask "alfred"
+cask "daisydisk"
+cask "dropbox"
+cask "emacs"
+cask "firefox"
+cask "hammerspoon"
+cask "intel-power-gadget"
+cask "istat-menus"
+cask "iterm2"
+cask "java8"
+cask "karabiner-elements"
+cask "omnigraffle"
+cask "skype"
+cask "steam"
+cask "xld"
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835
