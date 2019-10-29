@@ -76,6 +76,9 @@ unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 autoload -U zmv
 
+autoload compinit && compinit
+zstyle ':completion:*' menu select
+
 source /Users/harry/.iterm2_shell_integration.zsh
 
 ssh-add 2> /dev/null
