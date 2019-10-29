@@ -5,7 +5,6 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=100000
 setopt inc_append_history share_history
 
-
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/workspace/scripts:$PATH
@@ -16,18 +15,7 @@ export PATH=/usr/local/opt/python@2/libexec/bin:$PATH
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
 export GOPATH=$HOME/workspace/external_codebases/gocode
 
-# EC2
-# export EC2_HOME=/Users/harry/workspace/external_codebases/ec2-api-tools-1.6.5.4
-# export PATH=/Users/harry/workspace/external_codebases/ec2-api-tools-1.6.5.4/bin:$PATH
-
-# AWS
-# source /usr/local/bin/aws_zsh_completer.sh
-
-# export NODE_PATH="/usr/local/lib/node_modules"
-
 alias l='ls -alh'
-alias v='mvim'
-alias e='memacs'
 alias g='git'
 
 # fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
@@ -54,7 +42,7 @@ zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
 export KEYTIMEOUT=1
 
-# From https://unix.stackexchange.com/a/344028
+# Make ZSH prompt show Vi mode -- from https://unix.stackexchange.com/a/344028
 function zle-keymap-select zle-line-init {
     # change cursor shape in iTerm2
     case $KEYMAP in
@@ -76,12 +64,14 @@ export EDITOR='vim'
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+eval "$(pyenv init -)"
+
 [[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
 
 unsetopt CORRECT_ALL
 unsetopt RM_STAR_WAIT
 setopt INC_APPEND_HISTORY  # save history as commands are entered, not when shell exits
-setopt HIST_IGNORE_DUPS    # don't save duplicate commmands in history
+unsetopt HIST_IGNORE_DUPS  # do save duplicate commmands in history
 unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 autoload -U zmv
@@ -97,7 +87,9 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
-eval "$(pyenv init -)"
+# Ghosted autosuggestions. Install with:
+# $ git clone https://github.com/zsh-users/zsh-autosuggestions
+source $HOME/workspace/external_codebases/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
