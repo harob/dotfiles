@@ -4,6 +4,9 @@ PROMPT='%F{magenta}[%*] %F{yellow}%n %F{cyan}%c %F{green}$%f '
 export HISTFILE=~/.zsh_history
 export SAVEHIST=100000
 setopt inc_append_history share_history
+setopt INC_APPEND_HISTORY  # save history as commands are entered, not when shell exits
+unsetopt HIST_IGNORE_DUPS  # do save duplicate commmands in history
+unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
@@ -70,9 +73,6 @@ eval "$(pyenv init -)"
 
 unsetopt CORRECT_ALL
 unsetopt RM_STAR_WAIT
-setopt INC_APPEND_HISTORY  # save history as commands are entered, not when shell exits
-unsetopt HIST_IGNORE_DUPS  # do save duplicate commmands in history
-unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 autoload -U zmv
 
