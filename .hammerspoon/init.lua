@@ -25,8 +25,12 @@ end
 local mash_app = {"ctrl", "cmd"}
 
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
-hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
+hs.hotkey.bind(mash_app, 'G', function() hs.application.launchOrFocus('Google Meet') end)
+hs.hotkey.bind(mash_app, 'P', function() hs.application.launchOrFocus('Preview') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
+hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
+hs.hotkey.bind(mash_app, 'W', function() hs.application.launchOrFocus('WhatsApp') end)
+hs.hotkey.bind(mash_app, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
 -- For some unknown reason `launchOrFocus` doesn't work with my Emacs setup.
 -- Cf https://github.com/Hammerspoon/hammerspoon/issues/288
 hs.hotkey.bind(mash_app, 'M', function() hs.application.open('Emacs'):mainWindow():focus() end)
@@ -123,11 +127,14 @@ function switchLayout()
   if #screens == 1 then
     local laptop = "Color LCD"
     layout = {
-      {"iTerm2", nil, laptop, hs.layout.maximized, nil, nil},
-      {"Slack", nil, laptop, hs.layout.maximized, nil, nil},
-      {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
-      {"Superhuman", nil, laptop, hs.layout.maximized, nil, nil},
       {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Google Meet", nil, laptop, positions.upper50Left50, nil, nil},
+      {"iTerm2", nil, laptop, hs.layout.maximized, nil, nil},
+      {"Messages", nil, laptop, hs.layout.left50, nil, nil},
+      {"Slack", nil, laptop, hs.layout.left50, nil, nil},
+      {"WhatsApp", nil, laptop, hs.layout.left50, nil, nil},
+      {"zoom.us", nil, laptop, positions.upper50Left50, nil, nil},
     }
     layoutName = "Laptop layout"
   elseif screens[1]:name() == "Thunderbolt Display" or screens[1]:name() == "LG UltraFine" then
@@ -135,13 +142,16 @@ function switchLayout()
     local leftMonitor = hs.screen.allScreens()[1]
     local rightMonitor = hs.screen.allScreens()[3]
     layout = {
-      {"iTerm2", nil, leftMonitor, hs.layout.left50, nil, nil},
-      {"Slack", nil, leftMonitor, hs.layout.left50, nil, nil},
-      {"Google Chrome", nil, leftMonitor, hs.layout.right50, nil, nil},
-      {"Superhuman", nil, leftMonitor, hs.layout.right50, nil, nil},
       {"Emacs", nil, rightMonitor, hs.layout.maximized, nil, nil},
+      {"Google Chrome", nil, leftMonitor, hs.layout.right50, nil, nil},
+      {"Google Meet", nil, leftMonitor, positions.upper50Left50, nil, nil},
+      {"iTerm2", nil, leftMonitor, hs.layout.left50, nil, nil},
+      {"Messages", nil, leftMonitor, positions.left34, nil, nil},
+      {"Slack", nil, leftMonitor, hs.layout.left50, nil, nil},
+      {"WhatsApp", nil, leftMonitor, hs.layout.left50, nil, nil},
+      {"zoom.us", nil, leftMonitor, positions.upper50Left50, nil, nil},
     }
-    layoutName = "Thunderbolt layout"
+    layoutName = "Dual monitor layout"
   end
   hs.layout.apply(layout)
   hs.alert.show(layoutName)

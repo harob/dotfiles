@@ -13,6 +13,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/workspace/scripts:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PATH=/usr/local/opt/python@2/libexec/bin:$PATH
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 
 # Go
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
@@ -67,6 +68,7 @@ export EDITOR='vim'
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 [[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
