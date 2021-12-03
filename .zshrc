@@ -11,7 +11,8 @@ unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/workspace/scripts:$PATH
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
+# export JAVA11_HOME=$(/usr/libexec/java_home -v11)
 export PATH=/usr/local/opt/python@2/libexec/bin:$PATH
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 
