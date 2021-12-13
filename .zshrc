@@ -9,11 +9,8 @@ unsetopt HIST_IGNORE_DUPS  # do save duplicate commmands in history
 unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$HOME/workspace/scripts:$PATH
-export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
-# export JAVA11_HOME=$(/usr/libexec/java_home -v11)
-export PATH=/usr/local/opt/python@2/libexec/bin:$PATH
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 
 # Go
@@ -70,6 +67,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export PYENV_ROOT="$HOME/.pyenv"
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 [[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
@@ -82,7 +81,7 @@ autoload -U zmv
 autoload compinit && compinit
 zstyle ':completion:*' menu select
 
-source /Users/harry/.iterm2_shell_integration.zsh
+source $HOME/.iterm2_shell_integration.zsh
 
 ssh-add 2> /dev/null
 
@@ -93,11 +92,10 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
-# Ghosted autosuggestions. Install with:
-# $ git clone https://github.com/zsh-users/zsh-autosuggestions
-source $HOME/workspace/external_codebases/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Ghosted autosuggestions. Install with `brew install zsh-autosuggestions`
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
 # Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

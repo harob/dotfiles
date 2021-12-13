@@ -118,6 +118,11 @@ hs.hotkey.bind(mash, "s", sendWindowNextMonitor)
 
 ---- Screen watcher
 
+-- Source: https://stackoverflow.com/a/22831842
+function startsWith(str, prefix)
+   return string.sub(str, 1, string.len(prefix)) == prefix
+end
+
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 function switchLayout()
   local screens = hs.screen.allScreens()
@@ -137,7 +142,7 @@ function switchLayout()
       {"zoom.us", nil, laptop, positions.upper50Left50, nil, nil},
     }
     layoutName = "Laptop layout"
-  elseif screens[1]:name() == "Thunderbolt Display" or screens[1]:name() == "LG UltraFine" then
+  elseif screens[1]:name() == "Thunderbolt Display" or startsWith(screens[1]:name(), "LG UltraFine") then
     -- TODO: Sort screens properly by x-index:
     local leftMonitor = hs.screen.allScreens()[1]
     local rightMonitor = hs.screen.allScreens()[3]

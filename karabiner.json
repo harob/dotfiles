@@ -11,7 +11,8 @@
                     "basic.simultaneous_threshold_milliseconds": 50,
                     "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000,
-                    "basic.to_if_held_down_threshold_milliseconds": 500
+                    "basic.to_if_held_down_threshold_milliseconds": 500,
+                    "mouse_motion_to_scroll.speed": 100
                 },
                 "rules": [
                     {
@@ -21,8 +22,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "org.gnu.Emacs",
-                                          "com.googlecode.iterm2"
+                                            "org.gnu.Emacs",
+                                            "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -70,6 +71,72 @@
                                 "to": [
                                     {
                                         "key_code": "delete_or_backspace"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(emacs mode) Map ctrl-b to opt-left",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "org.gnu.Emacs",
+                                            "com.googlecode.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(emacs mode) Map ctrl-f to opt-right",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "org.gnu.Emacs",
+                                            "com.googlecode.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "option"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -177,9 +244,11 @@
                             "from": {
                                 "key_code": "e"
                             },
-                            "to": {
-                                "key_code": "e"
-                            }
+                            "to": [
+                                {
+                                    "key_code": "e"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -189,302 +258,373 @@
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": false,
-                        "product_id": 636,
+                        "product_id": 835,
                         "vendor_id": 1452
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                  "simple_modifications": [
-                    {
-                      "from": {
-                        "key_code": "a"
-                      },
-                      "to": {
-                        "key_code": "a"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "b"
-                      },
-                      "to": {
-                        "key_code": "x"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "backslash"
-                      },
-                      "to": {
-                        "key_code": "backslash"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "c"
-                      },
-                      "to": {
-                        "key_code": "j"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "close_bracket"
-                      },
-                      "to": {
-                        "key_code": "equal_sign"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "comma"
-                      },
-                      "to": {
-                        "key_code": "w"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "d"
-                      },
-                      "to": {
-                        "key_code": "e"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "e"
-                      },
-                      "to": {
-                        "key_code": "period"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "equal_sign"
-                      },
-                      "to": {
-                        "key_code": "close_bracket"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "f"
-                      },
-                      "to": {
-                        "key_code": "u"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "g"
-                      },
-                      "to": {
-                        "key_code": "i"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "h"
-                      },
-                      "to": {
-                        "key_code": "d"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "hyphen"
-                      },
-                      "to": {
-                        "key_code": "open_bracket"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "i"
-                      },
-                      "to": {
-                        "key_code": "c"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "j"
-                      },
-                      "to": {
-                        "key_code": "h"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "k"
-                      },
-                      "to": {
-                        "key_code": "t"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "l"
-                      },
-                      "to": {
-                        "key_code": "n"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "m"
-                      },
-                      "to": {
-                        "key_code": "m"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "n"
-                      },
-                      "to": {
-                        "key_code": "b"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "o"
-                      },
-                      "to": {
-                        "key_code": "r"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "open_bracket"
-                      },
-                      "to": {
-                        "key_code": "slash"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "p"
-                      },
-                      "to": {
-                        "key_code": "l"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "period"
-                      },
-                      "to": {
-                        "key_code": "v"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "q"
-                      },
-                      "to": {
-                        "key_code": "quote"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "quote"
-                      },
-                      "to": {
-                        "key_code": "hyphen"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "r"
-                      },
-                      "to": {
-                        "key_code": "p"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "s"
-                      },
-                      "to": {
-                        "key_code": "o"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "semicolon"
-                      },
-                      "to": {
-                        "key_code": "s"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "slash"
-                      },
-                      "to": {
-                        "key_code": "z"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "t"
-                      },
-                      "to": {
-                        "key_code": "y"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "u"
-                      },
-                      "to": {
-                        "key_code": "g"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "v"
-                      },
-                      "to": {
-                        "key_code": "k"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "w"
-                      },
-                      "to": {
-                        "key_code": "comma"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "x"
-                      },
-                      "to": {
-                        "key_code": "q"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "y"
-                      },
-                      "to": {
-                        "key_code": "f"
-                      }
-                    },
-                    {
-                      "from": {
-                        "key_code": "z"
-                      },
-                      "to": {
-                        "key_code": "semicolon"
-                      }
-                    }
-
-                  ]
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "a"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "a"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "b"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "x"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "backslash"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "backslash"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "c"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "j"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "close_bracket"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "equal_sign"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "comma"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "w"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "d"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "e"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "e"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "period"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "equal_sign"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "close_bracket"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "f"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "u"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "g"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "i"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "h"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "d"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "hyphen"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "open_bracket"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "i"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "c"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "j"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "h"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "k"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "t"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "l"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "n"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "m"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "m"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "n"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "b"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "o"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "r"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "open_bracket"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "slash"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "p"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "l"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "period"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "v"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "q"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "quote"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "quote"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "hyphen"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "r"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "p"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "s"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "o"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "semicolon"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "s"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "slash"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "z"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "t"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "y"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "u"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "g"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "v"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "k"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "w"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "comma"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "x"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "q"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "y"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "f"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "z"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "semicolon"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ],
             "fn_function_keys": [
@@ -492,107 +632,135 @@
                     "from": {
                         "key_code": "f1"
                     },
-                    "to": {
-                        "key_code": "display_brightness_decrement"
-                    }
+                    "to": [
+                        {
+                            "key_code": "display_brightness_decrement"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f2"
                     },
-                    "to": {
-                        "key_code": "display_brightness_increment"
-                    }
+                    "to": [
+                        {
+                            "key_code": "display_brightness_increment"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f3"
                     },
-                    "to": {
-                        "key_code": "mission_control"
-                    }
+                    "to": [
+                        {
+                            "key_code": "mission_control"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f4"
                     },
-                    "to": {
-                        "key_code": "launchpad"
-                    }
+                    "to": [
+                        {
+                            "key_code": "launchpad"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f5"
                     },
-                    "to": {
-                        "key_code": "illumination_decrement"
-                    }
+                    "to": [
+                        {
+                            "key_code": "illumination_decrement"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f6"
                     },
-                    "to": {
-                        "key_code": "illumination_increment"
-                    }
+                    "to": [
+                        {
+                            "key_code": "illumination_increment"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f7"
                     },
-                    "to": {
-                        "key_code": "rewind"
-                    }
+                    "to": [
+                        {
+                            "key_code": "rewind"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f8"
                     },
-                    "to": {
-                        "key_code": "play_or_pause"
-                    }
+                    "to": [
+                        {
+                            "key_code": "play_or_pause"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f9"
                     },
-                    "to": {
-                        "key_code": "fastforward"
-                    }
+                    "to": [
+                        {
+                            "key_code": "fastforward"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f10"
                     },
-                    "to": {
-                        "key_code": "mute"
-                    }
+                    "to": [
+                        {
+                            "key_code": "mute"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f11"
                     },
-                    "to": {
-                        "key_code": "volume_decrement"
-                    }
+                    "to": [
+                        {
+                            "key_code": "volume_decrement"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f12"
                     },
-                    "to": {
-                        "key_code": "volume_increment"
-                    }
+                    "to": [
+                        {
+                            "key_code": "volume_increment"
+                        }
+                    ]
                 }
             ],
             "name": "Default profile",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
             "selected": true,
-            "simple_modifications": [
-            ],
+            "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "country_code": 0,
-                "keyboard_type": "ansi"
+                "indicate_sticky_modifier_keys_state": true,
+                "keyboard_type": "ansi",
+                "mouse_key_xy_scale": 100
             }
         },
         {
@@ -601,114 +769,158 @@
                     "basic.simultaneous_threshold_milliseconds": 50,
                     "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000,
-                    "basic.to_if_held_down_threshold_milliseconds": 500
+                    "basic.to_if_held_down_threshold_milliseconds": 500,
+                    "mouse_motion_to_scroll.speed": 100
                 },
                 "rules": []
             },
-            "devices": [],
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 835,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": {
                         "key_code": "f1"
                     },
-                    "to": {
-                        "consumer_key_code": "display_brightness_decrement"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_decrement"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f2"
                     },
-                    "to": {
-                        "consumer_key_code": "display_brightness_increment"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_increment"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f3"
                     },
-                    "to": {
-                        "key_code": "mission_control"
-                    }
+                    "to": [
+                        {
+                            "key_code": "mission_control"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f4"
                     },
-                    "to": {
-                        "key_code": "launchpad"
-                    }
+                    "to": [
+                        {
+                            "key_code": "launchpad"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f5"
                     },
-                    "to": {
-                        "key_code": "illumination_decrement"
-                    }
+                    "to": [
+                        {
+                            "key_code": "illumination_decrement"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f6"
                     },
-                    "to": {
-                        "key_code": "illumination_increment"
-                    }
+                    "to": [
+                        {
+                            "key_code": "illumination_increment"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f7"
                     },
-                    "to": {
-                        "consumer_key_code": "rewind"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "rewind"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f8"
                     },
-                    "to": {
-                        "consumer_key_code": "play_or_pause"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "play_or_pause"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f9"
                     },
-                    "to": {
-                        "consumer_key_code": "fastforward"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "fastforward"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f10"
                     },
-                    "to": {
-                        "consumer_key_code": "mute"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "mute"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f11"
                     },
-                    "to": {
-                        "consumer_key_code": "volume_decrement"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_decrement"
+                        }
+                    ]
                 },
                 {
                     "from": {
                         "key_code": "f12"
                     },
-                    "to": {
-                        "consumer_key_code": "volume_increment"
-                    }
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_increment"
+                        }
+                    ]
                 }
             ],
             "name": "QWERTY",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
             "selected": false,
             "simple_modifications": [],
             "virtual_hid_keyboard": {
-                "country_code": 0
+                "country_code": 0,
+                "indicate_sticky_modifier_keys_state": true,
+                "mouse_key_xy_scale": 100
             }
         }
     ]
