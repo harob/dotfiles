@@ -1,6 +1,0 @@
-/* Place in ~/Library/KeyBindings/DefaultKeyBinding.dict. This file can not be symlinked. */
-{
-  "^w" = "deleteWordBackward:";
-  "^b" = "moveWordBackward:";
-  "^f" = "moveWordForward:";
-}
