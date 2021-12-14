@@ -4,5 +4,9 @@
 
 set -eu -o pipefail
 
-cd /Users/harry/Dropbox/notes
+echo $(date -u) "Running gitnote..."
+
+cd /Users/hrobertson/Dropbox/notes
 git diff --quiet && git diff --staged --quiet || git add . && git commit -am 'Automated commit by gitnote'
+
+echo $(date -u) "gitnote finished."

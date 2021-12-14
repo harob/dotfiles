@@ -7,13 +7,6 @@
   <dict>
     <key>Label</key>
     <string>harry.gitnote</string>
-    <!-- <key>KeepAlive</key> -->
-    <!-- <dict> -->
-    <!--   <key>SuccessfulExit</key> -->
-    <!--   <false /> -->
-    <!-- </dict> -->
-    <!-- <key>ThrottleInterval</key> -->
-    <!-- <integer>60</integer> -->
     <key>StartCalendarInterval</key>
     <dict>
       <key>Minute</key>
@@ -23,13 +16,11 @@
     </dict>
     <key>ProgramArguments</key>
     <array>
-      <string>/Users/harry/dotfiles/gitnote.sh</string>
-      <!-- <string>/usr/local/bin/brew</string> -->
-      <!-- <string>list</string> -->
+      <string>/Users/hrobertson/dotfiles/gitnote.sh</string>
     </array>
     <key>StandardOutPath</key>
-    <string>/usr/local/var/log/gitnote/stdout.log</string>
+    <string>/Users/hrobertson/gitnote-stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>/usr/local/var/log/gitnote/stderr.log</string>
+    <string>/Users/hrobertson/gitnote-stderr.log</string>
   </dict>
 </plist>
