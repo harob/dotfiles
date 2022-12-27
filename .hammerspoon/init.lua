@@ -45,7 +45,7 @@ hs.window.animationDuration = 0
 -- Source: https://github.com/AaronLasseigne/dotfiles/blob/50d2325c1ad7552ea95a313fbf022004e2932ce9/.hammerspoon/init.lua
 local positions = {
   maximized = hs.layout.maximized,
-  centered = {x=0.15, y=0.15, w=0.7, h=0.7},
+  centered = {x=0.25, y=0, w=0.5, h=1},
 
   left34 = {x=0, y=0, w=0.34, h=1},
   left50 = hs.layout.left50,
@@ -92,10 +92,12 @@ hs.fnutils.each(grid, function(entry)
     local windowGeo = window:frame()
 
     local index = 0
+    print("binding", units, screen, windowGeo)
     hs.fnutils.find(units, function(unit)
       index = index + 1
 
       local geo = hs.geometry.new(unit):fromUnitRect(screen:frame()):floor()
+      print("geo", geo)
       return windowGeo:equals(geo)
     end)
     if index == #units then index = 0 end
@@ -221,66 +223,13 @@ end)
 
 ---- Hyperdock / Zooom2 replacement
 
--- Inspired by Linux alt-drag or Better Touch Tools move/resize functionality
--- from https://gist.github.com/kizzx2/e542fa74b80b7563045a
--- Command-shift-move: move window under mouse
--- Alt-Shift-move: resize window under mouse
+-- Install with `git clone https://github.com/dbalatero/SkyRocket.spoon.git ~/.hammerspoon/Spoons/SkyRocket.spoon`
+local SkyRocket = hs.loadSpoon("SkyRocket")
 
--- TODO(harry) This is super laggy under Catalina, so I'm turning this off for now.
+sky = SkyRocket:new({
+  -- Which modifiers to hold to move a window?
+  moveModifiers = {'cmd', 'shift'},
 
--- function get_window_under_mouse()
---    local my_pos = hs.geometry.new(hs.mouse.getAbsolutePosition())
---    local my_screen = hs.mouse.getCurrentScreen()
---    return hs.fnutils.find(hs.window.orderedWindows(), function(w)
---                              return my_screen == w:screen() and
---                                 w:isStandard() and
---                                 (not w:isFullScreen()) and
---                                 my_pos:inside(w:frame())
---    end)
--- end
-
--- dragging = {}                   -- global variable to hold the dragging/resizing state
-
--- drag_event = hs.eventtap.new({ hs.eventtap.event.types.mouseMoved }, function(e)
---       if not dragging then return nil end
---       if dragging.mode==3 then -- just move
---          local dx = e:getProperty(hs.eventtap.event.properties.mouseEventDeltaX)
---          local dy = e:getProperty(hs.eventtap.event.properties.mouseEventDeltaY)
---          dragging.win:move({dx, dy}, nil, false, 0)
---       else -- resize
---          local pos=hs.mouse.getAbsolutePosition()
---          local w1 = dragging.size.w + (pos.x-dragging.off.x)
---          local h1 = dragging.size.h + (pos.y-dragging.off.y)
---          dragging.win:setSize(w1, h1)
---       end
--- end)
-
--- flags_event = hs.eventtap.new({ hs.eventtap.event.types.flagsChanged }, function(e)
---       local flags = e:getFlags()
---       local mode=(flags.shift and 1 or 0) + (flags.cmd and 2 or 0) + (flags.alt and 4 or 0)
---       if mode==3 or mode==5 then -- valid modes
---          if dragging then
---             if dragging.mode == mode then return nil end -- already working
---          else
---             -- only update window if we hadn't started dragging/resizing already
---             dragging={win = get_window_under_mouse()}
---             if not dragging.win then -- no good window
---                dragging=nil
---                return nil
---             end
---          end
---          dragging.mode = mode   -- 3=drag, 5=resize
---          if mode==5 then
---             dragging.off=hs.mouse.getAbsolutePosition()
---             dragging.size=dragging.win:size()
---          end
---          drag_event:start()
---       else                      -- not a valid mode
---          if dragging then
---             drag_event:stop()
---             dragging = nil
---          end
---       end
---       return nil
--- end)
--- flags_event:start()
+  -- Which modifiers to hold to resize a window?
+  resizeModifiers = {'alt', 'shift'},
+})
