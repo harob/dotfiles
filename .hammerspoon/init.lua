@@ -24,9 +24,9 @@ end
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 local mash_app = {"ctrl", "cmd"}
 
+hs.hotkey.bind(mash_app, 'P', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
 hs.hotkey.bind(mash_app, 'G', function() hs.application.launchOrFocus('Google Meet') end)
-hs.hotkey.bind(mash_app, 'P', function() hs.application.launchOrFocus('Preview') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
 hs.hotkey.bind(mash_app, 'W', function() hs.application.launchOrFocus('WhatsApp') end)

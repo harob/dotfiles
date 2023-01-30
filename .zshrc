@@ -81,6 +81,7 @@ autoload -U zmv
 autoload compinit && compinit
 zstyle ':completion:*' menu select
 
+# Install through the iTerm2 menus by iTerm2 -> Install Shell Integration
 source $HOME/.iterm2_shell_integration.zsh
 
 ssh-add 2> /dev/null
