@@ -65,6 +65,18 @@ local grid = {
   {key="w", units={positions.lower50Right50}}
 }
 
+function roughlyEquals(n1, n2)
+  return (n1 >= n2 - 10) and (n1 <= n2 + 10)
+end
+
+-- Adapted from hs.geometry.equals
+function geoRoughlyEquals(t1, t2)
+  return roughlyEquals(t1.x, t2.x) and
+    roughlyEquals(t1.y, t2.y) and
+    roughlyEquals(t1.w, t2.w) and
+    roughlyEquals(t1.h, t2.h)
+end
+
 hs.fnutils.each(grid, function(entry)
   hs.hotkey.bind(mash, entry.key, function()
     local units = entry.units
@@ -79,9 +91,9 @@ hs.fnutils.each(grid, function(entry)
 
       local geo = hs.geometry.new(unit):fromUnitRect(screen:frame()):floor()
       print("consideredGeo", geo)
-      -- TODO(harry) Do some fuzzy Math here. For some reason the Emacs window is off by 5ish pixels on width
-      -- and height, which breaks this logic.
-      return windowGeo:equals(geo)
+      -- For some reason the Emacs window is off by 5ish pixels on width and
+      -- height from what you'd expect, so do some fuzzy math:
+      return geoRoughlyEquals(windowGeo, geo)
     end)
     if index == #units then index = 0 end
 
@@ -163,3 +175,6 @@ sky = SkyRocket:new({
   -- Which modifiers to hold to resize a window?
   resizeModifiers = {'alt', 'shift'},
 })
+
+
+hs.alert.show("Config loaded")
