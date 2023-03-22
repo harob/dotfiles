@@ -45,17 +45,16 @@ hs.window.animationDuration = 0
 -- Source: https://github.com/AaronLasseigne/dotfiles/blob/50d2325c1ad7552ea95a313fbf022004e2932ce9/.hammerspoon/init.lua
 local positions = {
   maximized = hs.layout.maximized,
-  centered = {x=0.25, y=0, w=0.5, h=1},
+  centered50 = {x=0.25, y=0, w=0.5, h=1},
+  centered34 = {x=0.33, y=0, w=0.34, h=1},
 
-  left34 = {x=0, y=0, w=0.34, h=1},
+  left33 = {x=0, y=0, w=0.33, h=1},
   left50 = hs.layout.left50,
-  left66 = {x=0, y=0, w=0.66, h=1},
-  left70 = hs.layout.left70,
+  left67 = {x=0, y=0, w=0.67, h=1},
 
-  right30 = hs.layout.right30,
-  right34 = {x=0.66, y=0, w=0.34, h=1},
+  right33 = {x=0.67, y=0, w=0.33, h=1},
   right50 = hs.layout.right50,
-  right66 = {x=0.34, y=0, w=0.66, h=1},
+  right67 = {x=0.33, y=0, w=0.67, h=1},
 
   upper50 = {x=0, y=0, w=1, h=0.5},
   upper50Left50 = {x=0, y=0, w=0.5, h=0.5},
@@ -65,9 +64,7 @@ local positions = {
 
   lower50 = {x=0, y=0.5, w=1, h=0.5},
   lower50Left50 = {x=0, y=0.5, w=0.5, h=0.5},
-  lower50Right50 = {x=0.5, y=0.5, w=0.5, h=0.5},
-
-  chat = {x=0.5, y=0, w=0.35, h=0.5}
+  lower50Right50 = {x=0.5, y=0.5, w=0.5, h=0.5}
 }
 
 local grid = {
@@ -75,9 +72,9 @@ local grid = {
   {key="g", units={positions.upper50}},
   {key="c", units={positions.upper50Right50}},
 
-  {key="d", units={positions.left50, positions.left66, positions.left34}},
-  {key="h", units={positions.maximized, positions.centered}},
-  {key="t", units={positions.right50, positions.right66, positions.right34}},
+  {key="d", units={positions.left50, positions.left67, positions.left33}},
+  {key="h", units={positions.maximized, positions.centered50, positions.centered34}},
+  {key="t", units={positions.right50, positions.right67, positions.right33}},
 
   {key="b", units={positions.lower50Left50}},
   {key="m", units={positions.lower50}},
@@ -92,17 +89,20 @@ hs.fnutils.each(grid, function(entry)
     local windowGeo = window:frame()
 
     local index = 0
-    print("binding", units, screen, windowGeo)
+    print("windowGeo", windowGeo)
     hs.fnutils.find(units, function(unit)
       index = index + 1
 
       local geo = hs.geometry.new(unit):fromUnitRect(screen:frame()):floor()
-      print("geo", geo)
+      print("consideredGeo", geo)
+      -- TODO(harry) Do some fuzzy Math here. For some reason the Emacs window is off by 5ish pixels on width
+      -- and height, which breaks this logic.
       return windowGeo:equals(geo)
     end)
     if index == #units then index = 0 end
 
     currentLayout = null
+    print("targetGeo", units[index + 1])
     window:moveToUnit(units[index + 1])
   end)
 end)
@@ -153,7 +153,7 @@ function switchLayout()
       {"Google Chrome", nil, leftMonitor, hs.layout.right50, nil, nil},
       {"Google Meet", nil, leftMonitor, positions.upper50Left50, nil, nil},
       {"iTerm2", nil, leftMonitor, hs.layout.left50, nil, nil},
-      {"Messages", nil, leftMonitor, positions.left34, nil, nil},
+      {"Messages", nil, leftMonitor, positions.left33, nil, nil},
       {"Slack", nil, leftMonitor, hs.layout.left50, nil, nil},
       {"WhatsApp", nil, leftMonitor, hs.layout.left50, nil, nil},
       {"zoom.us", nil, leftMonitor, positions.upper50Left50, nil, nil},
