@@ -13,4 +13,4 @@
 # @raycast.description Append a TODO to inbox.org
 # @raycast.author Harry Robertson
 
-printf "** TODO $1\n" >> "$HOME/Dropbox/notes/test_inbox.org"
+printf "** TODO $1\n" >> "$HOME/Dropbox/notes/inbox.org"
