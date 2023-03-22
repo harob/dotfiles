@@ -24,9 +24,11 @@ end
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 local mash_app = {"ctrl", "cmd"}
 
-hs.hotkey.bind(mash_app, 'P', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
+hs.hotkey.bind(mash_app, 'E', function() hs.application.launchOrFocus('Microsoft Edge') end)
 hs.hotkey.bind(mash_app, 'G', function() hs.application.launchOrFocus('Google Meet') end)
+hs.hotkey.bind(mash_app, 'I', function() hs.application.launchOrFocus('Messages') end)
+hs.hotkey.bind(mash_app, 'P', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
 hs.hotkey.bind(mash_app, 'W', function() hs.application.launchOrFocus('WhatsApp') end)
@@ -165,60 +167,6 @@ function switchLayout()
 end
 
 hs.hotkey.bind(mash, "r", function() switchLayout() end)
-
-
----- GTD task taker
-
--- Source: https://github.com/Hammerspoon/hammerspoon/issues/782
-local chooser = nil
-
-local commands = {
-  {
-    ['text'] = 'Add TODO',
-    ['subText'] = 'Append to inbox.org',
-    ['command'] = 'append',
-  },
-}
-
--- This resets the choices to the command table, and has the side effect
--- of resetting the highlighted choice as well.
-local function resetChoices()
-  chooser:rows(#commands)
-  -- add commands
-  local choices = {}
-  for _, command in ipairs(commands) do
-    choices[#choices+1] = command
-  end
-  chooser:choices(choices)
-end
-
-local function append(text)
-  print("append", text)
-  -- TODO(harry)
-  local f = io.open(os.getenv("HOME") .. "/Dropbox/notes/inbox.org", "a")
-  f:write("\n** TODO " .. text)
-  f:close()
-end
-
-local function choiceCallback(choice)
-  if choice.command == 'append' then
-    append(chooser:query())
-  else
-    print("Unknown choice!")
-  end
-  -- set the chooser back to the default state
-  resetChoices()
-  chooser:query('')
-end
-
-hs.hotkey.bind(mash_app, "space", function()
-  chooser = hs.chooser.new(choiceCallback)
-  -- disable built-in search
-  chooser:queryChangedCallback(function() end)
-  -- populate the command list
-  resetChoices()
-  chooser:show()
-end)
 
 
 ---- Hyperdock / Zooom2 replacement
