@@ -8,7 +8,7 @@ setopt INC_APPEND_HISTORY  # save history as commands are entered, not when shel
 unsetopt HIST_IGNORE_DUPS  # do save duplicate commmands in history
 unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$HOME/workspace/scripts:$PATH
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
