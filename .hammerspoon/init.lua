@@ -51,6 +51,7 @@ local positions = {
   lower50Right50 = {x=0.5, y=0.5, w=0.5, h=0.5}
 }
 
+-- This is a 3x3 grid around the right hand's anchor key in Dvorak:
 local grid = {
   {key="f", units={positions.upper50Left50}},
   {key="g", units={positions.upper50}},
@@ -118,17 +119,18 @@ hs.hotkey.bind(mash, "s", sendWindowNextMonitor)
 
 -- Source: https://stackoverflow.com/a/22831842
 function startsWith(str, prefix)
-   return string.sub(str, 1, string.len(prefix)) == prefix
+  return string.sub(str, 1, string.len(prefix)) == prefix
 end
 
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 function switchLayout()
   local screens = hs.screen.allScreens()
+  table.sort(screens, function(a, b) return a:position() < b:position() end)
   print("switchLayout", hs.inspect.inspect(screens))
   local layout
   local layoutName
   if #screens == 1 then
-    local laptop = "Color LCD"
+    local laptop = screens[1]
     layout = {
       {"Emacs", nil, laptop, hs.layout.maximized, nil, nil},
       {"Google Chrome", nil, laptop, hs.layout.maximized, nil, nil},
@@ -140,10 +142,9 @@ function switchLayout()
       {"zoom.us", nil, laptop, positions.upper50Left50, nil, nil},
     }
     layoutName = "Laptop layout"
-  elseif screens[1]:name() == "Thunderbolt Display" or startsWith(screens[1]:name(), "LG UltraFine") then
-    -- TODO: Sort screens properly by x-index:
-    local leftMonitor = hs.screen.allScreens()[1]
-    local rightMonitor = hs.screen.allScreens()[3]
+  elseif #screens == 3 then
+    local leftMonitor = screens[1]
+    local rightMonitor = screens[2]
     layout = {
       {"Emacs", nil, rightMonitor, hs.layout.maximized, nil, nil},
       {"Google Chrome", nil, leftMonitor, hs.layout.right50, nil, nil},
@@ -156,6 +157,7 @@ function switchLayout()
     }
     layoutName = "Dual monitor layout"
   end
+  print("layout", layoutName)
   hs.layout.apply(layout)
   hs.alert.show(layoutName)
 end
