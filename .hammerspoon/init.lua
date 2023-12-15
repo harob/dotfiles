@@ -10,14 +10,12 @@ hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Ch
 hs.hotkey.bind(mash_app, 'E', function() hs.application.launchOrFocus('Microsoft Edge') end)
 hs.hotkey.bind(mash_app, 'G', function() hs.application.launchOrFocus('Google Meet') end)
 hs.hotkey.bind(mash_app, 'I', function() hs.application.launchOrFocus('Messages') end)
+hs.hotkey.bind(mash_app, 'M', function() hs.application.launchOrFocus('Emacs') end)
 hs.hotkey.bind(mash_app, 'P', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(mash_app, 'S', function() hs.application.launchOrFocus('Slack') end)
 hs.hotkey.bind(mash_app, 'T', function() hs.application.launchOrFocus('iTerm') end)
 hs.hotkey.bind(mash_app, 'W', function() hs.application.launchOrFocus('WhatsApp') end)
 hs.hotkey.bind(mash_app, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
--- For some unknown reason `launchOrFocus` doesn't work with my Emacs setup.
--- Cf https://github.com/Hammerspoon/hammerspoon/issues/288
-hs.hotkey.bind(mash_app, 'M', function() hs.application.open('Emacs'):mainWindow():focus() end)
 
 
 ---- Window movement (SizeUp replacement)
