@@ -186,8 +186,13 @@ local chooser = nil
 local commands = {
   {
     ['text'] = 'Add TODO',
-    ['subText'] = 'Append to inbox.org',
-    ['command'] = 'append',
+    ['subText'] = 'Append TODO to inbox.org',
+    ['command'] = 'appendTodo',
+  },
+  {
+    ['text'] = 'Add note',
+    ['subText'] = 'Append note to inbox.org',
+    ['command'] = 'appendNote',
   },
 }
 
@@ -203,16 +208,26 @@ local function resetChoices()
   chooser:choices(choices)
 end
 
-local function append(text)
-  print("append", text)
+local function appendTodo(text)
+  print("appendTodo ", text)
   local f = io.open(os.getenv("HOME") .. "/Dropbox/notes/inbox.org", "a")
   f:write("** TODO " .. text .. "\n")
   f:close()
 end
 
+local function appendNote(text)
+  print("appendNote ", text)
+  local f = io.open(os.getenv("HOME") .. "/Dropbox/notes/inbox.org", "a")
+  f:write("** " .. text .. "\n")
+  f:close()
+end
+
 local function choiceCallback(choice)
-  if choice.command == 'append' then
-    append(chooser:query())
+  local text = chooser:query()
+  if choice.command == 'appendTodo' then
+    appendTodo(text)
+  elseif choice.command == 'appendNote' then
+    appendNote(text)
   else
     print("Unknown choice!")
   end
