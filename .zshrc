@@ -97,9 +97,6 @@ bindkey '^I' $fzf_default_completion
 # Ghosted autosuggestions. Install with `brew install zsh-autosuggestions`
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Set up Github copilot aliases ??, git?, and gh?:
-eval "$(github-copilot-cli alias -- "$0")"
-
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
 # Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!
