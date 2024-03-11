@@ -1,0 +1,5 @@
+# These SearchDirs will get combined with a list of default search directories.
+SearchDirs = [
+  "~/Dropbox (Liftoff)",
+  "~/tmp"
+]

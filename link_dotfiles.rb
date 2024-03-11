@@ -4,7 +4,7 @@ DOTDIR = "dotfiles"
 
 Dir.chdir File::expand_path("~")
 Dir.foreach(DOTDIR) do |file|
-  next unless file =~ /^\.[a-z]+/ && file != ".git"
+  next unless (file =~ /^\.[a-z]+/ && file != ".git") || file == "picker.toml"
   if File.directory? "#{DOTDIR}/#{file}"
     dir = file
     unless File.symlink? "#{DOTDIR}/#{dir}"
