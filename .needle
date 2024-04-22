@@ -1,0 +1,13 @@
+{
+  "shortcut": {
+    "ctrl": false,
+    "meta": true,
+    "alt": false,
+    "shift": false,
+    "key": "space"
+  },
+  "searchDirs": [
+    "/Users/hrobertson/tmp",
+    "/Users/hrobertson/Dropbox (Liftoff)"
+  ]
+}
