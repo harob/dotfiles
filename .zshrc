@@ -11,7 +11,7 @@ unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$HOME/workspace/scripts:$PATH
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 
 # Go
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
