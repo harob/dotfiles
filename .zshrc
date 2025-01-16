@@ -94,6 +94,8 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
 # Ghosted autosuggestions. Install with `brew install zsh-autosuggestions`
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
