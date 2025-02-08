@@ -6,6 +6,7 @@ require("caffeine")
 -- Source: https://gist.github.com/apesic/d840d8eaba759ac143c7b8fea9475f7a
 local mash_app = {"ctrl", "cmd"}
 
+hs.hotkey.bind(mash_app, 'A', function() hs.application.launchOrFocus('Cursor') end)
 hs.hotkey.bind(mash_app, 'C', function() hs.application.launchOrFocus('Google Chrome') end)
 hs.hotkey.bind(mash_app, 'G', function() hs.application.launchOrFocus('Google Meet') end)
 hs.hotkey.bind(mash_app, 'I', function() hs.application.launchOrFocus('Messages') end)
