@@ -1,6 +1,6 @@
 [user]
-	name = Harry Robertson
-	email = harry.robertson@gmail.com
+  name = Harry Robertson
+  email = harry.robertson@gmail.com
 [color]
   diff = auto
   status = auto
@@ -8,11 +8,13 @@
   interactive = auto
   ui = auto
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [push]
   default = tracking
+[pull]
+  rebase = true
 [gc]
-  # Don't run gc --auto for me after some commands. 
+  # Don't run gc --auto for me after some commands.
   # I will run git-gc from time to time by hand.
   auto = 0
 
@@ -32,7 +34,17 @@
   last = "!git log --oneline -n 1 --format='%H'"
 
 [core]
-	excludesfile = /Users/harry/.gitignore
-	editor = /usr/bin/vim
-[pull]
-	rebase = true
+  excludesfile = /Users/harry/.gitignore
+  editor = /usr/bin/vim
+  # Install delta with `brew install git-delta`
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  dark = true      # or light = true, or omit for auto-detection
+  line-numbers = true
+  #side-by-side = true
+[merge]
+  conflictstyle = zdiff3
