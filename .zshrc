@@ -17,7 +17,7 @@ export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
 export GOPATH=$HOME/workspace/external_codebases/gocode
 
-alias l='ls -alh'
+alias l='ls -alh --color=auto'
 alias g='git'
 
 # fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
