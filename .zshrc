@@ -34,6 +34,8 @@ bindkey -v
 bindkey "^?" backward-delete-char
 bindkey '^H' backward-delete-char
 bindkey '^W' backward-kill-word
+bindkey '^B' backward-word
+bindkey '^F' forward-word
 # bindkey '^R' history-incremental-pattern-search-backward # This is defined elsewhere by fzf
 bindkey "^P" vi-up-line-or-history
 bindkey "^N" vi-down-line-or-history

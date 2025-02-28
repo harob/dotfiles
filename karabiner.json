@@ -24,7 +24,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "org.gnu.Emacs",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+                                            "com.mitchellh.ghostty"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -86,7 +87,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "org.gnu.Emacs",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+                                            "com.mitchellh.ghostty"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -119,7 +121,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "org.gnu.Emacs",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+                                            "com.mitchellh.ghostty"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
