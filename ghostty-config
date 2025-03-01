@@ -1,2 +1,4 @@
-window-colorspace = display-p3
+# window-colorspace = display-p3
+# theme = cyberpunk
+# theme = Monokai Classic
 keybind = super+shift+f=write_screen_file:open
