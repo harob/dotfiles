@@ -26,6 +26,9 @@ end
 
 `cp #{DOTDIR}/karabiner.json .config/karabiner/`
 
+`mkdir -p .config/ghostty`
+`ln -Fs ~/#{DOTDIR}/ghostty-config .config/ghostty/config`
+
 `cp #{DOTDIR}/harry.gitnote.plist Library/LaunchAgents/harry.gitnote.plist`
 `launchctl unload Library/LaunchAgents/harry.gitnote.plist || true`
 `launchctl load Library/LaunchAgents/harry.gitnote.plist`

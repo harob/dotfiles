@@ -1,0 +1,2 @@
+window-colorspace = display-p3
+keybind = super+shift+f=write_screen_file:open
