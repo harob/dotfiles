@@ -17,6 +17,9 @@ export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
 export GOPATH=$HOME/workspace/external_codebases/gocode
 
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
+
 alias l='ls -alh --color=auto'
 alias g='git'
 
