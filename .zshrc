@@ -68,14 +68,13 @@ export EDITOR='vim'
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-[[ -r /usr/local/share/zsh/site-functions/go ]] && . /usr/local/share/zsh/site-functions/go
-
 unsetopt CORRECT_ALL
 unsetopt RM_STAR_WAIT
 
 autoload -U zmv
 
-autoload compinit && compinit
+# Use all the per-tool autocompletion's provided by homebrew -- see https://docs.brew.sh/Shell-Completion
+autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
 # Install through the iTerm2 menus by iTerm2 -> Install Shell Integration
