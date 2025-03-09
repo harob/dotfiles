@@ -18,10 +18,8 @@ brew "postgresql@15", restart_service: :changed
 brew "pv"
 brew "redis", restart_service: :changed
 brew "ripgrep"
-brew "rlwrap"
 brew "wget"
 brew "yarn"
-brew "yasm"
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
