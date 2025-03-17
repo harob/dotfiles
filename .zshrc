@@ -37,8 +37,11 @@ setopt DVORAK
 function zvm_after_init() {
     zvm_bindkey vicmd 'H' beginning-of-line
     zvm_bindkey vicmd 'L' end-of-line
+
     zvm_bindkey viins '^B' backward-word
     zvm_bindkey viins '^F' forward-word
+
+    zvm_bindkey viins "^R" fzf-history-widget
 }
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 export ZVM_KEYTIMEOUT=1
