@@ -11,7 +11,7 @@ unsetopt HIST_IGNORE_SPACE # do save commands that begin with a space
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin::/usr/X11/bin
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$HOME/workspace/scripts:$PATH
-export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
+export PATH="$(brew --prefix)/opt/postgresql@17/bin:$PATH"
 
 # Go
 export PATH=$HOME/workspace/external_codebases/gocode/bin:$PATH
@@ -78,6 +78,21 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
