@@ -26,7 +26,7 @@ alias g='git'
 # fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
 eval "$(fasd --init auto)"
 
-export REPORTTIME=15 # Say how long a command took, if it took more than N seconds
+export REPORTTIME=5 # Say how long a command took, if it took more than N seconds
 
 # Zsh spelling correction options
 #setopt CORRECT
