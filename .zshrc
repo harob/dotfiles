@@ -20,8 +20,9 @@ export GOPATH=$HOME/workspace/external_codebases/gocode
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 
-alias l='ls -alh --color=auto'
+alias e='emacsclient -n'
 alias g='git'
+alias l='ls -alh --color=auto'
 
 # fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
 eval "$(fasd --init auto)"
