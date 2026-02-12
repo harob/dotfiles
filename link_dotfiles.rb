@@ -29,6 +29,9 @@ end
 `mkdir -p .config/ghostty`
 `ln -Fs ~/#{DOTDIR}/ghostty-config .config/ghostty/config`
 
+`mkdir -p .config/enchant`
+`ln -Fs ~/Dropbox/config/enchant/en_US.dic ~/.config/enchant/`
+
 `cp #{DOTDIR}/harry.gitnote.plist Library/LaunchAgents/harry.gitnote.plist`
 `launchctl unload Library/LaunchAgents/harry.gitnote.plist || true`
 `launchctl load Library/LaunchAgents/harry.gitnote.plist`
