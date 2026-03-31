@@ -1,5 +1,28 @@
-PROMPT='%F{magenta}[%*] %F{yellow}%n %F{cyan}%c %F{green}$%f '
+PROMPT='%F{magenta}[%*] %F{yellow}%n %F{blue}${GIT_BRANCH}%f %F{cyan}%c %F{green}$%f '
+# PROMPT='%F{magenta}[%*] %F{yellow}%n %F{cyan}%c %F{green}$%f '
 # RPROMPT=' %F{magenta}[%*]%f'
+
+# Set the git branch in the prompt as efficiently as possible
+setopt prompt_subst
+git_branch() {
+  local b
+  b=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) || return
+  printf '%s' "$b"
+}
+precmd_update_git_branch() {
+  GIT_BRANCH=$(/usr/bin/env git symbolic-ref --quiet --short HEAD 2>/dev/null || true)
+}
+precmd_functions+=( precmd_update_git_branch )
+
+# Jump to Git Route
+gr() {
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || {
+    echo "not in a git repo"
+    return 1
+  }
+  cd "$root"
+}
 
 export HISTFILE=~/.zsh_history
 export SAVEHIST=100000
@@ -77,6 +100,8 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Ghosted autosuggestions. Install with `brew install zsh-autosuggestions`
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+eval "$(direnv hook zsh)"
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
