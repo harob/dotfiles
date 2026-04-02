@@ -97,7 +97,56 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(direnv hook zsh)"
 
+# Use zoxide for `z` frecency-based directory jumping
+export _ZO_ECHO=1
 eval "$(zoxide init zsh)"
+
+# Make z worktree-aware: when in a git worktree, remap zoxide results
+# from the root worktree to the current worktree.
+function z() {
+  if [[ $# -eq 0 ]]; then
+    __zoxide_z
+    return
+  fi
+
+  # If not in a git repo, just use zoxide normally
+  local root_wt
+  root_wt=$(git worktree list 2>/dev/null | head -1 | awk '{print $1}') || {
+    __zoxide_z "$@"
+    return
+  }
+
+  # Find which worktree we're currently in
+  local current_wt
+  current_wt=$(git worktree list 2>/dev/null | awk '{print $1}' | while read -r wt; do
+    if [[ "$PWD/" == "$wt/"* ]]; then
+      echo "$wt"
+      break
+    fi
+  done)
+
+  # If in the root worktree (or can't determine), use zoxide normally
+  if [[ -z "$current_wt" || "$current_wt" == "$root_wt" ]]; then
+    __zoxide_z "$@"
+    return
+  fi
+
+  # Map current dir to root worktree, query zoxide from there
+  local mapped_pwd="${root_wt}${PWD#$current_wt}"
+  local dest
+  dest=$(cd "$mapped_pwd" 2>/dev/null && zoxide query --exclude "$mapped_pwd" "$@") || {
+    __zoxide_z "$@"
+    return
+  }
+
+  # If result is inside the root worktree, remap to current worktree
+  if [[ "$dest" == "$root_wt"* ]]; then
+    dest="${current_wt}${dest#$root_wt}"
+  fi
+
+  echo "$dest"
+  cd "$dest"
+}
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
