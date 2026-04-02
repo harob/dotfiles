@@ -47,9 +47,6 @@ alias e='emacsclient -n'
 alias g='git'
 alias l='ls -alh --color=auto'
 
-# fasd, a "z" replacement. Install with `brew install fasd` or from https://github.com/clvv/fasd
-eval "$(fasd --init auto)"
-
 export REPORTTIME=5 # Say how long a command took, if it took more than N seconds
 
 # Zsh spelling correction options
@@ -84,9 +81,6 @@ autoload -U zmv
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
-# Install through the iTerm2 menus by iTerm2 -> Install Shell Integration
-source $HOME/.iterm2_shell_integration.zsh
-
 ssh-add 2> /dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -102,6 +96,8 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(direnv hook zsh)"
+
+eval "$(zoxide init zsh)"
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
 
