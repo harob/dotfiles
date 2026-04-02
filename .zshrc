@@ -95,6 +95,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 # Ghosted autosuggestions. Install with `brew install zsh-autosuggestions`
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
 
 # Use zoxide for `z` frecency-based directory jumping

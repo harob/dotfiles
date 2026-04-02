@@ -4,7 +4,7 @@ DOTDIR = "dotfiles"
 
 Dir.chdir File::expand_path("~")
 Dir.foreach(DOTDIR) do |file|
-  next unless (file =~ /^\.[a-z]+/ && file != ".git")
+  next unless (file =~ /^\.[a-z]+/ && file != ".git" && file != ".claude")
   if File.directory? "#{DOTDIR}/#{file}"
     dir = file
     unless File.symlink? "#{DOTDIR}/#{dir}"
@@ -31,6 +31,9 @@ end
 
 `mkdir -p .config/enchant`
 `ln -Fs ~/Dropbox/config/enchant/en_US.dic ~/.config/enchant/`
+
+`mkdir -p .config/direnv`
+`ln -Fs ~/#{DOTDIR}/direnv.toml .config/direnv/direnv.toml`
 
 `cp #{DOTDIR}/harry.gitnote.plist Library/LaunchAgents/harry.gitnote.plist`
 `launchctl unload Library/LaunchAgents/harry.gitnote.plist || true`
