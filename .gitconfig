@@ -29,8 +29,8 @@
   ss = stash
   sp = stash pop
 
-  f = filename # git-filename script: https://github.com/cespare/git-scripts/blob/master/git-filename
   l = log --pretty=format:\"%h %ad | [%an] %s%d\" --graph --date=short
+  ls = log -n 5 --graph --decorate --oneline --abbrev-commit --date=relative --pretty=format:'%C(auto)%h %C(bold blue)%an%Creset %Cgreen(%cr)%Creset %s %C(yellow)%d%Creset'
   last = "!git log --oneline -n 1 --format='%H'"
 
 [core]
