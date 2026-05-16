@@ -77,10 +77,6 @@ unsetopt RM_STAR_WAIT
 
 autoload -U zmv
 
-# Use all the per-tool autocompletion's provided by homebrew -- see https://docs.brew.sh/Shell-Completion
-autoload -Uz compinit && compinit
-zstyle ':completion:*' menu select
-
 ssh-add 2> /dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -150,6 +146,10 @@ function z() {
 }
 
 [[ -r $HOME/.system_specific_vars ]] && . $HOME/.system_specific_vars
+
+# Use all the per-tool autocompletion's provided by homebrew -- see https://docs.brew.sh/Shell-Completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
 
 # Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
