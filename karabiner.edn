@@ -16,7 +16,36 @@
  {:builtin [{:is_built_in_keyboard true}]}
 
  :main
- [{:des "Emacs-style ctrl bindings (outside terminals/Emacs)"
+ [;; Lower layer — hold spacebar to activate, tap alone sends space.
+  ;; Mirrors the Glove80 hardware Lower layer for the MacBook built-in keyboard.
+  ;; Must precede the Dvorak remap so position-based mappings win.
+  {:des "Lower layer (hold spacebar)"
+   :rules [;; Trigger: hold spacebar -> set "lower" var; tap alone -> send space.
+           [:spacebar ["lower" 1] nil {:afterup ["lower" 0] :alone :spacebar}]
+           ;; Layered remaps (each requires lower=1 AND built-in keyboard).
+           [:tab          :mute              [["lower" 1] :builtin]]
+           [:q            :volume_decrement  [["lower" 1] :builtin]]
+           [:w            :volume_increment  [["lower" 1] :builtin]]
+           [:e            :!Sopen_bracket    [["lower" 1] :builtin]]   ;; {
+           [:r            :!Sclose_bracket   [["lower" 1] :builtin]]   ;; }
+           [:a            :!CSopen_bracket   [["lower" 1] :builtin]]   ;; ⌘⇧[
+           [:s            :!CSclose_bracket  [["lower" 1] :builtin]]   ;; ⌘⇧]
+           [:d            :open_bracket      [["lower" 1] :builtin]]   ;; [
+           [:f            :close_bracket     [["lower" 1] :builtin]]   ;; ]
+           [:c            :down_arrow        [["lower" 1] :builtin]]
+           [:v            :up_arrow          [["lower" 1] :builtin]]
+           [:5            :home              [["lower" 1] :builtin]]
+           [:t            :page_up           [["lower" 1] :builtin]]
+           [:g            :page_down         [["lower" 1] :builtin]]
+           [:b            :end               [["lower" 1] :builtin]]
+           [:j            :left_arrow        [["lower" 1] :builtin]]
+           [:p            :right_arrow       [["lower" 1] :builtin]]
+           [:o            :!S8               [["lower" 1] :builtin]]   ;; *
+           [:l            :!Sequal_sign      [["lower" 1] :builtin]]   ;; +
+           [:semicolon    :equal_sign        [["lower" 1] :builtin]]   ;; =
+           ]}
+
+  {:des "Emacs-style ctrl bindings (outside terminals/Emacs)"
    :rules [;; !T means "require left-ctrl" here. !emacs/!terms means "not in that app group".
            [:!Tw :!Odelete_or_backspace [:!emacs :!terms]]
            [:!Tb :!Oleft_arrow          [:!emacs :!terms]]
