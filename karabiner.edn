@@ -21,7 +21,7 @@
   ;; Must precede the Dvorak remap so position-based mappings win.
   {:des "Lower layer (hold spacebar)"
    :rules [;; Trigger: hold spacebar -> set "lower" var; tap alone -> send space.
-           [:spacebar ["lower" 1] nil {:afterup ["lower" 0] :alone :spacebar}]
+           [:spacebar ["lower" 1] [:builtin] {:afterup ["lower" 0] :alone :spacebar}]
            ;; Layered remaps (each requires lower=1 AND built-in keyboard).
            [:tab          :mute              [["lower" 1] :builtin]]
            [:q            :volume_decrement  [["lower" 1] :builtin]]
