@@ -46,11 +46,26 @@
            ]}
 
   {:des "Emacs-style ctrl bindings (outside terminals/Emacs)"
-   :rules [;; !T means "require left-ctrl" here. !emacs/!terms means "not in that app group".
-           [:!Tw :!Odelete_or_backspace [:!emacs :!terms]]
-           [:!Tb :!Oleft_arrow          [:!emacs :!terms]]
-           [:!Tf :!Oright_arrow         [:!emacs :!terms]]
-           [:!Th :delete_or_backspace   [:!emacs]]]}
+   ;; Goku only writes complex_modifications. Karabiner has an earlier stage,
+   ;; simple_modifications, which runs *before* complex rules — the old "My
+   ;; Dvorak" profile put the Dvorak remap there, so by the time these emacs
+   ;; rules saw a keypress it had already been rewritten to the Dvorak letter.
+   ;; In Goku we can't use that earlier stage, and complex rules don't chain
+   ;; (later rules don't see earlier rules' output), so we can't catch both
+   ;; hardware-Dvorak boards (which emit Dvorak letters) and the built-in
+   ;; MacBook (which emits QWERTY scancodes) with a single rule. Two parallel
+   ;; sets, scoped by device.
+   :rules [;; External / hardware-Dvorak keyboards: match the Dvorak letter directly.
+           [:!Tw :!Odelete_or_backspace [:!emacs :!terms :!builtin]]
+           [:!Tb :!Oleft_arrow          [:!emacs :!terms :!builtin]]
+           [:!Tf :!Oright_arrow         [:!emacs :!terms :!builtin]]
+           [:!Th :delete_or_backspace   [:!emacs :!builtin]]
+           ;; Built-in MacBook: match the QWERTY position of the Dvorak letter,
+           ;; so the rule fires *before* the Dvorak remap rewrites the keypress.
+           [:!Tcomma :!Odelete_or_backspace [:!emacs :!terms :builtin]]   ;; Dvorak w
+           [:!Tn     :!Oleft_arrow          [:!emacs :!terms :builtin]]   ;; Dvorak b
+           [:!Ty     :!Oright_arrow         [:!emacs :!terms :builtin]]   ;; Dvorak f
+           [:!Tj     :delete_or_backspace   [:!emacs :builtin]]]}         ;; Dvorak h
 
   {:des "Caps Lock: tap = Escape, hold = Control"
    :rules [;; ## means "optionally with any modifier"
