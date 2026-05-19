@@ -61,24 +61,27 @@
            [:right_shift {:key :right_shift :lazy true} nil {:alone :!S0}]]}
 
   {:des "QWERTY -> Dvorak remap (built-in keyboard only)"
-   :rules [[:b :x      [:builtin]] [:c :j           [:builtin]]
-           [:d :e      [:builtin]] [:e :period      [:builtin]]
-           [:f :u      [:builtin]] [:g :i           [:builtin]]
-           [:h :d      [:builtin]] [:i :c           [:builtin]]
-           [:j :h      [:builtin]] [:k :t           [:builtin]]
-           [:l :n      [:builtin]] [:n :b           [:builtin]]
-           [:o :r      [:builtin]] [:p :l           [:builtin]]
-           [:q :quote  [:builtin]] [:r :p           [:builtin]]
-           [:s :o      [:builtin]] [:t :y           [:builtin]]
-           [:u :g      [:builtin]] [:v :k           [:builtin]]
-           [:w :comma  [:builtin]] [:x :q           [:builtin]]
-           [:y :f      [:builtin]] [:z :semicolon   [:builtin]]
-           [:semicolon     :s            [:builtin]]
-           [:quote         :hyphen       [:builtin]]
-           [:comma         :w            [:builtin]]
-           [:period        :v            [:builtin]]
-           [:slash         :z            [:builtin]]
-           [:open_bracket  :slash        [:builtin]]
-           [:close_bracket :equal_sign   [:builtin]]
-           [:equal_sign    :close_bracket [:builtin]]
-           [:hyphen        :open_bracket [:builtin]]]}]}
+   ;; ## prefix = "optional: any modifier" — so the remap fires under modifier
+   ;; combos too (e.g. ⌘⌥⌃C for Hammerspoon hotkeys). Without it, complex_mods
+   ;; only match the bare key, and modified presses pass through unremapped.
+   :rules [[:##b :x      [:builtin]] [:##c :j           [:builtin]]
+           [:##d :e      [:builtin]] [:##e :period      [:builtin]]
+           [:##f :u      [:builtin]] [:##g :i           [:builtin]]
+           [:##h :d      [:builtin]] [:##i :c           [:builtin]]
+           [:##j :h      [:builtin]] [:##k :t           [:builtin]]
+           [:##l :n      [:builtin]] [:##n :b           [:builtin]]
+           [:##o :r      [:builtin]] [:##p :l           [:builtin]]
+           [:##q :quote  [:builtin]] [:##r :p           [:builtin]]
+           [:##s :o      [:builtin]] [:##t :y           [:builtin]]
+           [:##u :g      [:builtin]] [:##v :k           [:builtin]]
+           [:##w :comma  [:builtin]] [:##x :q           [:builtin]]
+           [:##y :f      [:builtin]] [:##z :semicolon   [:builtin]]
+           [:##semicolon     :s            [:builtin]]
+           [:##quote         :hyphen       [:builtin]]
+           [:##comma         :w            [:builtin]]
+           [:##period        :v            [:builtin]]
+           [:##slash         :z            [:builtin]]
+           [:##open_bracket  :slash        [:builtin]]
+           [:##close_bracket :equal_sign   [:builtin]]
+           [:##equal_sign    :close_bracket [:builtin]]
+           [:##hyphen        :open_bracket [:builtin]]]}]}
