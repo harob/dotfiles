@@ -1,0 +1,55 @@
+;; Goku config — generates the "Goku" profile in karabiner.json.
+;; Run `goku` (or `goku -A` for dry-run) after editing.
+;; Tutorial: https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
+
+{:profiles
+ {:Goku {:default true :selected true}}
+
+ :applications
+ {:emacs ["^org\\.gnu\\.Emacs$"]
+  :terms ["^com\\.googlecode\\.iterm2$"
+          "^com\\.mitchellh\\.ghostty$"]}
+
+ ;; Only the MacBook built-in keyboard needs the QWERTY -> Dvorak remap;
+ ;; my external keyboards (e.g. Glove80) already type Dvorak in hardware.
+ :devices
+ {:builtin [{:is_built_in_keyboard true}]}
+
+ :main
+ [{:des "Emacs-style ctrl bindings (outside terminals/Emacs)"
+   :rules [;; !T means "require left-ctrl" here. !emacs/!terms means "not in that app group".
+           [:!Tw :!Odelete_or_backspace [:!emacs :!terms]]
+           [:!Tb :!Oleft_arrow          [:!emacs :!terms]]
+           [:!Tf :!Oright_arrow         [:!emacs :!terms]]
+           [:!Th :delete_or_backspace   [:!emacs]]]}
+
+  {:des "Caps Lock: tap = Escape, hold = Control"
+   :rules [;; ## means "optionally with any modifier"
+           [:##caps_lock :left_control nil {:alone :escape}]]}
+
+  {:des "Better Shifting: tap shift for ( or )"
+   :rules [[:left_shift  {:key :left_shift  :lazy true} nil {:alone :!S9}]
+           [:right_shift {:key :right_shift :lazy true} nil {:alone :!S0}]]}
+
+  {:des "QWERTY -> Dvorak remap (built-in keyboard only)"
+   :rules [[:b :x      [:builtin]] [:c :j           [:builtin]]
+           [:d :e      [:builtin]] [:e :period      [:builtin]]
+           [:f :u      [:builtin]] [:g :i           [:builtin]]
+           [:h :d      [:builtin]] [:i :c           [:builtin]]
+           [:j :h      [:builtin]] [:k :t           [:builtin]]
+           [:l :n      [:builtin]] [:n :b           [:builtin]]
+           [:o :r      [:builtin]] [:p :l           [:builtin]]
+           [:q :quote  [:builtin]] [:r :p           [:builtin]]
+           [:s :o      [:builtin]] [:t :y           [:builtin]]
+           [:u :g      [:builtin]] [:v :k           [:builtin]]
+           [:w :comma  [:builtin]] [:x :q           [:builtin]]
+           [:y :f      [:builtin]] [:z :semicolon   [:builtin]]
+           [:semicolon     :s            [:builtin]]
+           [:quote         :hyphen       [:builtin]]
+           [:comma         :w            [:builtin]]
+           [:period        :v            [:builtin]]
+           [:slash         :z            [:builtin]]
+           [:open_bracket  :slash        [:builtin]]
+           [:close_bracket :equal_sign   [:builtin]]
+           [:equal_sign    :close_bracket [:builtin]]
+           [:hyphen        :open_bracket [:builtin]]]}]}

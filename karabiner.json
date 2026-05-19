@@ -1,6 +1,14 @@
 {
     "profiles": [
         {
+            "name": "Goku",
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "keyboard_type": "ansi",
+                "keyboard_type_v2": "ansi"
+            }
+        },
+        {
             "complex_modifications": {
                 "rules": [
                     {
