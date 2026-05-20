@@ -1,584 +1,2009 @@
 {
-    "profiles": [
-        {
-            "name": "Goku",
-            "selected": true,
-            "virtual_hid_keyboard": {
-                "country_code": 0,
-                "keyboard_type": "ansi",
-                "keyboard_type_v2": "ansi"
+  "profiles" : [ {
+    "name" : "Goku",
+    "selected" : true,
+    "virtual_hid_keyboard" : {
+      "country_code" : 0,
+      "keyboard_type" : "ansi",
+      "keyboard_type_v2" : "ansi"
+    },
+    "complex_modifications" : {
+      "parameters" : {
+        "basic.simultaneous_threshold_milliseconds" : null,
+        "basic.to_delayed_action_delay_milliseconds" : null,
+        "basic.to_if_alone_timeout_milliseconds" : null,
+        "basic.to_if_held_down_threshold_milliseconds" : 200
+      },
+      "rules" : [ {
+        "description" : "Lower layer (hold spacebar)",
+        "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "spacebar"
+          } ],
+          "to_if_held_down" : [ {
+            "set_variable" : {
+              "name" : "lower",
+              "value" : 1
             }
-        },
-        {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "description": "(emacs mode) Map ctrl-w to opt-backspace",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "org.gnu.Emacs",
-                                            "com.googlecode.iterm2",
-                                            "com.mitchellh.ghostty"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": ["option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "(emacs mode) Map ctrl-h to backspace",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "org.gnu.Emacs"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["control"] }
-                                },
-                                "to": [{ "key_code": "delete_or_backspace" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "(emacs mode) Map ctrl-b to opt-left",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "org.gnu.Emacs",
-                                            "com.googlecode.iterm2",
-                                            "com.mitchellh.ghostty"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "b",
-                                    "modifiers": { "mandatory": ["control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "(emacs mode) Map ctrl-f to opt-right",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "org.gnu.Emacs",
-                                            "com.googlecode.iterm2",
-                                            "com.mitchellh.ghostty"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "mandatory": ["control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps Lock to Escape on single press, Control on press and hold.",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_control" }],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Better Shifting: Parentheses on shift keys",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "left_shift" },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "9",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "right_shift" },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "0",
-                                        "modifiers": ["right_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "devices": [
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 1027,
-                        "vendor_id": 4176
-                    },
-                    "manipulate_caps_lock_led": false
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 4871,
-                        "vendor_id": 65261
-                    },
-                    "manipulate_caps_lock_led": false,
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "e" },
-                            "to": [{ "key_code": "e" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "a" },
-                            "to": [{ "key_code": "a" }]
-                        },
-                        {
-                            "from": { "key_code": "b" },
-                            "to": [{ "key_code": "x" }]
-                        },
-                        {
-                            "from": { "key_code": "backslash" },
-                            "to": [{ "key_code": "backslash" }]
-                        },
-                        {
-                            "from": { "key_code": "c" },
-                            "to": [{ "key_code": "j" }]
-                        },
-                        {
-                            "from": { "key_code": "close_bracket" },
-                            "to": [{ "key_code": "equal_sign" }]
-                        },
-                        {
-                            "from": { "key_code": "comma" },
-                            "to": [{ "key_code": "w" }]
-                        },
-                        {
-                            "from": { "key_code": "d" },
-                            "to": [{ "key_code": "e" }]
-                        },
-                        {
-                            "from": { "key_code": "e" },
-                            "to": [{ "key_code": "period" }]
-                        },
-                        {
-                            "from": { "key_code": "equal_sign" },
-                            "to": [{ "key_code": "close_bracket" }]
-                        },
-                        {
-                            "from": { "key_code": "f" },
-                            "to": [{ "key_code": "u" }]
-                        },
-                        {
-                            "from": { "key_code": "g" },
-                            "to": [{ "key_code": "i" }]
-                        },
-                        {
-                            "from": { "key_code": "h" },
-                            "to": [{ "key_code": "d" }]
-                        },
-                        {
-                            "from": { "key_code": "hyphen" },
-                            "to": [{ "key_code": "open_bracket" }]
-                        },
-                        {
-                            "from": { "key_code": "i" },
-                            "to": [{ "key_code": "c" }]
-                        },
-                        {
-                            "from": { "key_code": "j" },
-                            "to": [{ "key_code": "h" }]
-                        },
-                        {
-                            "from": { "key_code": "k" },
-                            "to": [{ "key_code": "t" }]
-                        },
-                        {
-                            "from": { "key_code": "l" },
-                            "to": [{ "key_code": "n" }]
-                        },
-                        {
-                            "from": { "key_code": "m" },
-                            "to": [{ "key_code": "m" }]
-                        },
-                        {
-                            "from": { "key_code": "n" },
-                            "to": [{ "key_code": "b" }]
-                        },
-                        {
-                            "from": { "key_code": "o" },
-                            "to": [{ "key_code": "r" }]
-                        },
-                        {
-                            "from": { "key_code": "open_bracket" },
-                            "to": [{ "key_code": "slash" }]
-                        },
-                        {
-                            "from": { "key_code": "p" },
-                            "to": [{ "key_code": "l" }]
-                        },
-                        {
-                            "from": { "key_code": "period" },
-                            "to": [{ "key_code": "v" }]
-                        },
-                        {
-                            "from": { "key_code": "q" },
-                            "to": [{ "key_code": "quote" }]
-                        },
-                        {
-                            "from": { "key_code": "quote" },
-                            "to": [{ "key_code": "hyphen" }]
-                        },
-                        {
-                            "from": { "key_code": "r" },
-                            "to": [{ "key_code": "p" }]
-                        },
-                        {
-                            "from": { "key_code": "s" },
-                            "to": [{ "key_code": "o" }]
-                        },
-                        {
-                            "from": { "key_code": "semicolon" },
-                            "to": [{ "key_code": "s" }]
-                        },
-                        {
-                            "from": { "key_code": "slash" },
-                            "to": [{ "key_code": "z" }]
-                        },
-                        {
-                            "from": { "key_code": "t" },
-                            "to": [{ "key_code": "y" }]
-                        },
-                        {
-                            "from": { "key_code": "u" },
-                            "to": [{ "key_code": "g" }]
-                        },
-                        {
-                            "from": { "key_code": "v" },
-                            "to": [{ "key_code": "k" }]
-                        },
-                        {
-                            "from": { "key_code": "w" },
-                            "to": [{ "key_code": "comma" }]
-                        },
-                        {
-                            "from": { "key_code": "x" },
-                            "to": [{ "key_code": "q" }]
-                        },
-                        {
-                            "from": { "key_code": "y" },
-                            "to": [{ "key_code": "f" }]
-                        },
-                        {
-                            "from": { "key_code": "z" },
-                            "to": [{ "key_code": "semicolon" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 835,
-                        "vendor_id": 1452
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "a" },
-                            "to": [{ "key_code": "a" }]
-                        },
-                        {
-                            "from": { "key_code": "b" },
-                            "to": [{ "key_code": "x" }]
-                        },
-                        {
-                            "from": { "key_code": "backslash" },
-                            "to": [{ "key_code": "backslash" }]
-                        },
-                        {
-                            "from": { "key_code": "c" },
-                            "to": [{ "key_code": "j" }]
-                        },
-                        {
-                            "from": { "key_code": "close_bracket" },
-                            "to": [{ "key_code": "equal_sign" }]
-                        },
-                        {
-                            "from": { "key_code": "comma" },
-                            "to": [{ "key_code": "w" }]
-                        },
-                        {
-                            "from": { "key_code": "d" },
-                            "to": [{ "key_code": "e" }]
-                        },
-                        {
-                            "from": { "key_code": "e" },
-                            "to": [{ "key_code": "period" }]
-                        },
-                        {
-                            "from": { "key_code": "equal_sign" },
-                            "to": [{ "key_code": "close_bracket" }]
-                        },
-                        {
-                            "from": { "key_code": "f" },
-                            "to": [{ "key_code": "u" }]
-                        },
-                        {
-                            "from": { "key_code": "g" },
-                            "to": [{ "key_code": "i" }]
-                        },
-                        {
-                            "from": { "key_code": "h" },
-                            "to": [{ "key_code": "d" }]
-                        },
-                        {
-                            "from": { "key_code": "hyphen" },
-                            "to": [{ "key_code": "open_bracket" }]
-                        },
-                        {
-                            "from": { "key_code": "i" },
-                            "to": [{ "key_code": "c" }]
-                        },
-                        {
-                            "from": { "key_code": "j" },
-                            "to": [{ "key_code": "h" }]
-                        },
-                        {
-                            "from": { "key_code": "k" },
-                            "to": [{ "key_code": "t" }]
-                        },
-                        {
-                            "from": { "key_code": "l" },
-                            "to": [{ "key_code": "n" }]
-                        },
-                        {
-                            "from": { "key_code": "m" },
-                            "to": [{ "key_code": "m" }]
-                        },
-                        {
-                            "from": { "key_code": "n" },
-                            "to": [{ "key_code": "b" }]
-                        },
-                        {
-                            "from": { "key_code": "o" },
-                            "to": [{ "key_code": "r" }]
-                        },
-                        {
-                            "from": { "key_code": "open_bracket" },
-                            "to": [{ "key_code": "slash" }]
-                        },
-                        {
-                            "from": { "key_code": "p" },
-                            "to": [{ "key_code": "l" }]
-                        },
-                        {
-                            "from": { "key_code": "period" },
-                            "to": [{ "key_code": "v" }]
-                        },
-                        {
-                            "from": { "key_code": "q" },
-                            "to": [{ "key_code": "quote" }]
-                        },
-                        {
-                            "from": { "key_code": "quote" },
-                            "to": [{ "key_code": "hyphen" }]
-                        },
-                        {
-                            "from": { "key_code": "r" },
-                            "to": [{ "key_code": "p" }]
-                        },
-                        {
-                            "from": { "key_code": "s" },
-                            "to": [{ "key_code": "o" }]
-                        },
-                        {
-                            "from": { "key_code": "semicolon" },
-                            "to": [{ "key_code": "s" }]
-                        },
-                        {
-                            "from": { "key_code": "slash" },
-                            "to": [{ "key_code": "z" }]
-                        },
-                        {
-                            "from": { "key_code": "t" },
-                            "to": [{ "key_code": "y" }]
-                        },
-                        {
-                            "from": { "key_code": "u" },
-                            "to": [{ "key_code": "g" }]
-                        },
-                        {
-                            "from": { "key_code": "v" },
-                            "to": [{ "key_code": "k" }]
-                        },
-                        {
-                            "from": { "key_code": "w" },
-                            "to": [{ "key_code": "comma" }]
-                        },
-                        {
-                            "from": { "key_code": "x" },
-                            "to": [{ "key_code": "q" }]
-                        },
-                        {
-                            "from": { "key_code": "y" },
-                            "to": [{ "key_code": "f" }]
-                        },
-                        {
-                            "from": { "key_code": "z" },
-                            "to": [{ "key_code": "semicolon" }]
-                        }
-                    ]
-                }
-            ],
-            "fn_function_keys": [
-                {
-                    "from": { "key_code": "f1" },
-                    "to": [{ "key_code": "display_brightness_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f2" },
-                    "to": [{ "key_code": "display_brightness_increment" }]
-                },
-                {
-                    "from": { "key_code": "f3" },
-                    "to": [{ "key_code": "mission_control" }]
-                },
-                {
-                    "from": { "key_code": "f4" },
-                    "to": [{ "key_code": "launchpad" }]
-                },
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [{ "key_code": "illumination_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f6" },
-                    "to": [{ "key_code": "illumination_increment" }]
-                },
-                {
-                    "from": { "key_code": "f7" },
-                    "to": [{ "key_code": "rewind" }]
-                },
-                {
-                    "from": { "key_code": "f8" },
-                    "to": [{ "key_code": "play_or_pause" }]
-                },
-                {
-                    "from": { "key_code": "f9" },
-                    "to": [{ "key_code": "fastforward" }]
-                },
-                {
-                    "from": { "key_code": "f10" },
-                    "to": [{ "key_code": "mute" }]
-                },
-                {
-                    "from": { "key_code": "f11" },
-                    "to": [{ "key_code": "volume_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f12" },
-                    "to": [{ "key_code": "volume_increment" }]
-                }
-            ],
-            "name": "My Dvorak",
-            "virtual_hid_keyboard": {
-                "caps_lock_delay_milliseconds": 0,
-                "country_code": 0,
-                "keyboard_type": "ansi",
-                "keyboard_type_v2": "ansi"
+          } ],
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "lower",
+              "value" : 0
             }
+          } ],
+          "from" : {
+            "key_code" : "spacebar"
+          },
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "tab"
+          },
+          "to" : [ {
+            "consumer_key_code" : "mute"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "q"
+          },
+          "to" : [ {
+            "consumer_key_code" : "volume_decrement"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "w"
+          },
+          "to" : [ {
+            "consumer_key_code" : "volume_increment"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "e"
+          },
+          "to" : [ {
+            "key_code" : "open_bracket",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "r"
+          },
+          "to" : [ {
+            "key_code" : "close_bracket",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "a"
+          },
+          "to" : [ {
+            "key_code" : "open_bracket",
+            "modifiers" : [ "left_command", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "key_code" : "close_bracket",
+            "modifiers" : [ "left_command", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d"
+          },
+          "to" : [ {
+            "key_code" : "open_bracket"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f"
+          },
+          "to" : [ {
+            "key_code" : "close_bracket"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "c"
+          },
+          "to" : [ {
+            "key_code" : "down_arrow"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "v"
+          },
+          "to" : [ {
+            "key_code" : "up_arrow"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "5"
+          },
+          "to" : [ {
+            "key_code" : "home"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "t"
+          },
+          "to" : [ {
+            "key_code" : "page_up"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "g"
+          },
+          "to" : [ {
+            "key_code" : "page_down"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "b"
+          },
+          "to" : [ {
+            "key_code" : "end"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j"
+          },
+          "to" : [ {
+            "key_code" : "left_arrow"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "p"
+          },
+          "to" : [ {
+            "key_code" : "right_arrow"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "o"
+          },
+          "to" : [ {
+            "key_code" : "8",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l"
+          },
+          "to" : [ {
+            "key_code" : "equal_sign",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "semicolon"
+          },
+          "to" : [ {
+            "key_code" : "equal_sign"
+          } ],
+          "conditions" : [ {
+            "name" : "lower",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Emacs-style ctrl bindings (outside terminals/Emacs)",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "w",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_or_backspace",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_unless"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "b",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_unless"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_unless"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "h",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_or_backspace"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_unless"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "comma",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_or_backspace",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "n",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "y",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_or_backspace"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Caps Lock: tap = Escape, hold = Control",
+        "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "escape"
+          } ],
+          "from" : {
+            "key_code" : "caps_lock",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_control"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Better Shifting: tap shift for ( or )",
+        "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "9",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "from" : {
+            "key_code" : "left_shift"
+          },
+          "to" : [ {
+            "key_code" : "left_shift",
+            "lazy" : true
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_alone" : [ {
+            "key_code" : "0",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "from" : {
+            "key_code" : "right_shift"
+          },
+          "to" : [ {
+            "key_code" : "right_shift",
+            "lazy" : true
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "QWERTY -> Dvorak remap (built-in keyboard only)",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "b",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "x"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "c",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "j"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "e"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "e",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "period"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "u"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "g",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "i"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "h",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "d"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "i",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "c"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "h"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "k",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "t"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "n"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "n",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "b"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "o",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "r"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "p",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "l"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "q",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "quote"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "r",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "p"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "o"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "t",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "y"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "u",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "g"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "v",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "k"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "w",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "comma"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "x",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "q"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "y",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "z",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "semicolon"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "semicolon",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "s"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "quote",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "hyphen"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "comma",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "w"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "period",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "v"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "slash",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "z"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "open_bracket",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "slash"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "close_bracket",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "equal_sign"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "equal_sign",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "close_bracket"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "hyphen",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "open_bracket"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      } ]
+    }
+  }, {
+    "complex_modifications" : {
+      "rules" : [ {
+        "description" : "(emacs mode) Map ctrl-w to opt-backspace",
+        "manipulators" : [ {
+          "conditions" : [ {
+            "bundle_identifiers" : [ "org.gnu.Emacs", "com.googlecode.iterm2", "com.mitchellh.ghostty" ],
+            "type" : "frontmost_application_unless"
+          } ],
+          "from" : {
+            "key_code" : "w",
+            "modifiers" : {
+              "mandatory" : [ "control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_or_backspace",
+            "modifiers" : [ "option" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "(emacs mode) Map ctrl-h to backspace",
+        "manipulators" : [ {
+          "conditions" : [ {
+            "bundle_identifiers" : [ "org.gnu.Emacs" ],
+            "type" : "frontmost_application_unless"
+          } ],
+          "from" : {
+            "key_code" : "h",
+            "modifiers" : {
+              "mandatory" : [ "control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_or_backspace"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "(emacs mode) Map ctrl-b to opt-left",
+        "manipulators" : [ {
+          "conditions" : [ {
+            "bundle_identifiers" : [ "org.gnu.Emacs", "com.googlecode.iterm2", "com.mitchellh.ghostty" ],
+            "type" : "frontmost_application_unless"
+          } ],
+          "from" : {
+            "key_code" : "b",
+            "modifiers" : {
+              "mandatory" : [ "control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "option" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "(emacs mode) Map ctrl-f to opt-right",
+        "manipulators" : [ {
+          "conditions" : [ {
+            "bundle_identifiers" : [ "org.gnu.Emacs", "com.googlecode.iterm2", "com.mitchellh.ghostty" ],
+            "type" : "frontmost_application_unless"
+          } ],
+          "from" : {
+            "key_code" : "f",
+            "modifiers" : {
+              "mandatory" : [ "control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "option" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Caps Lock to Escape on single press, Control on press and hold.",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "caps_lock",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_control"
+          } ],
+          "to_if_alone" : [ {
+            "key_code" : "escape"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Better Shifting: Parentheses on shift keys",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "left_shift"
+          },
+          "to" : [ {
+            "key_code" : "left_shift",
+            "lazy" : true
+          } ],
+          "to_if_alone" : [ {
+            "key_code" : "9",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "right_shift"
+          },
+          "to" : [ {
+            "key_code" : "right_shift",
+            "lazy" : true
+          } ],
+          "to_if_alone" : [ {
+            "key_code" : "0",
+            "modifiers" : [ "right_shift" ]
+          } ],
+          "type" : "basic"
+        } ]
+      } ]
+    },
+    "devices" : [ {
+      "identifiers" : {
+        "is_keyboard" : true,
+        "product_id" : 1027,
+        "vendor_id" : 4176
+      },
+      "manipulate_caps_lock_led" : false
+    }, {
+      "identifiers" : {
+        "is_keyboard" : true,
+        "product_id" : 4871,
+        "vendor_id" : 65261
+      },
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ {
+        "from" : {
+          "key_code" : "e"
         },
-        {
-            "fn_function_keys": [
-                {
-                    "from": { "key_code": "f3" },
-                    "to": [{ "key_code": "mission_control" }]
-                },
-                {
-                    "from": { "key_code": "f4" },
-                    "to": [{ "key_code": "launchpad" }]
-                },
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [{ "key_code": "illumination_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f6" },
-                    "to": [{ "key_code": "illumination_increment" }]
-                },
-                {
-                    "from": { "key_code": "f9" },
-                    "to": [{ "consumer_key_code": "fastforward" }]
-                }
-            ],
-            "name": "QWERTY",
-            "virtual_hid_keyboard": { "country_code": 0 }
-        }
-    ]
+        "to" : [ {
+          "key_code" : "e"
+        } ]
+      } ]
+    }, {
+      "identifiers" : {
+        "is_keyboard" : true
+      },
+      "simple_modifications" : [ {
+        "from" : {
+          "key_code" : "a"
+        },
+        "to" : [ {
+          "key_code" : "a"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "b"
+        },
+        "to" : [ {
+          "key_code" : "x"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "backslash"
+        },
+        "to" : [ {
+          "key_code" : "backslash"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "c"
+        },
+        "to" : [ {
+          "key_code" : "j"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "close_bracket"
+        },
+        "to" : [ {
+          "key_code" : "equal_sign"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "comma"
+        },
+        "to" : [ {
+          "key_code" : "w"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "d"
+        },
+        "to" : [ {
+          "key_code" : "e"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "e"
+        },
+        "to" : [ {
+          "key_code" : "period"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "equal_sign"
+        },
+        "to" : [ {
+          "key_code" : "close_bracket"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "f"
+        },
+        "to" : [ {
+          "key_code" : "u"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "g"
+        },
+        "to" : [ {
+          "key_code" : "i"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "h"
+        },
+        "to" : [ {
+          "key_code" : "d"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "hyphen"
+        },
+        "to" : [ {
+          "key_code" : "open_bracket"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "i"
+        },
+        "to" : [ {
+          "key_code" : "c"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "j"
+        },
+        "to" : [ {
+          "key_code" : "h"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "k"
+        },
+        "to" : [ {
+          "key_code" : "t"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "l"
+        },
+        "to" : [ {
+          "key_code" : "n"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "m"
+        },
+        "to" : [ {
+          "key_code" : "m"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "n"
+        },
+        "to" : [ {
+          "key_code" : "b"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "o"
+        },
+        "to" : [ {
+          "key_code" : "r"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "open_bracket"
+        },
+        "to" : [ {
+          "key_code" : "slash"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "p"
+        },
+        "to" : [ {
+          "key_code" : "l"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "period"
+        },
+        "to" : [ {
+          "key_code" : "v"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "q"
+        },
+        "to" : [ {
+          "key_code" : "quote"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "quote"
+        },
+        "to" : [ {
+          "key_code" : "hyphen"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "r"
+        },
+        "to" : [ {
+          "key_code" : "p"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "s"
+        },
+        "to" : [ {
+          "key_code" : "o"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "semicolon"
+        },
+        "to" : [ {
+          "key_code" : "s"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "slash"
+        },
+        "to" : [ {
+          "key_code" : "z"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "t"
+        },
+        "to" : [ {
+          "key_code" : "y"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "u"
+        },
+        "to" : [ {
+          "key_code" : "g"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "v"
+        },
+        "to" : [ {
+          "key_code" : "k"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "w"
+        },
+        "to" : [ {
+          "key_code" : "comma"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "x"
+        },
+        "to" : [ {
+          "key_code" : "q"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "y"
+        },
+        "to" : [ {
+          "key_code" : "f"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "z"
+        },
+        "to" : [ {
+          "key_code" : "semicolon"
+        } ]
+      } ]
+    }, {
+      "identifiers" : {
+        "is_keyboard" : true,
+        "product_id" : 835,
+        "vendor_id" : 1452
+      },
+      "simple_modifications" : [ {
+        "from" : {
+          "key_code" : "a"
+        },
+        "to" : [ {
+          "key_code" : "a"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "b"
+        },
+        "to" : [ {
+          "key_code" : "x"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "backslash"
+        },
+        "to" : [ {
+          "key_code" : "backslash"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "c"
+        },
+        "to" : [ {
+          "key_code" : "j"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "close_bracket"
+        },
+        "to" : [ {
+          "key_code" : "equal_sign"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "comma"
+        },
+        "to" : [ {
+          "key_code" : "w"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "d"
+        },
+        "to" : [ {
+          "key_code" : "e"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "e"
+        },
+        "to" : [ {
+          "key_code" : "period"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "equal_sign"
+        },
+        "to" : [ {
+          "key_code" : "close_bracket"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "f"
+        },
+        "to" : [ {
+          "key_code" : "u"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "g"
+        },
+        "to" : [ {
+          "key_code" : "i"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "h"
+        },
+        "to" : [ {
+          "key_code" : "d"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "hyphen"
+        },
+        "to" : [ {
+          "key_code" : "open_bracket"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "i"
+        },
+        "to" : [ {
+          "key_code" : "c"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "j"
+        },
+        "to" : [ {
+          "key_code" : "h"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "k"
+        },
+        "to" : [ {
+          "key_code" : "t"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "l"
+        },
+        "to" : [ {
+          "key_code" : "n"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "m"
+        },
+        "to" : [ {
+          "key_code" : "m"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "n"
+        },
+        "to" : [ {
+          "key_code" : "b"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "o"
+        },
+        "to" : [ {
+          "key_code" : "r"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "open_bracket"
+        },
+        "to" : [ {
+          "key_code" : "slash"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "p"
+        },
+        "to" : [ {
+          "key_code" : "l"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "period"
+        },
+        "to" : [ {
+          "key_code" : "v"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "q"
+        },
+        "to" : [ {
+          "key_code" : "quote"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "quote"
+        },
+        "to" : [ {
+          "key_code" : "hyphen"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "r"
+        },
+        "to" : [ {
+          "key_code" : "p"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "s"
+        },
+        "to" : [ {
+          "key_code" : "o"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "semicolon"
+        },
+        "to" : [ {
+          "key_code" : "s"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "slash"
+        },
+        "to" : [ {
+          "key_code" : "z"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "t"
+        },
+        "to" : [ {
+          "key_code" : "y"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "u"
+        },
+        "to" : [ {
+          "key_code" : "g"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "v"
+        },
+        "to" : [ {
+          "key_code" : "k"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "w"
+        },
+        "to" : [ {
+          "key_code" : "comma"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "x"
+        },
+        "to" : [ {
+          "key_code" : "q"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "y"
+        },
+        "to" : [ {
+          "key_code" : "f"
+        } ]
+      }, {
+        "from" : {
+          "key_code" : "z"
+        },
+        "to" : [ {
+          "key_code" : "semicolon"
+        } ]
+      } ]
+    } ],
+    "fn_function_keys" : [ {
+      "from" : {
+        "key_code" : "f1"
+      },
+      "to" : [ {
+        "key_code" : "display_brightness_decrement"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f2"
+      },
+      "to" : [ {
+        "key_code" : "display_brightness_increment"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f3"
+      },
+      "to" : [ {
+        "key_code" : "mission_control"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f4"
+      },
+      "to" : [ {
+        "key_code" : "launchpad"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f5"
+      },
+      "to" : [ {
+        "key_code" : "illumination_decrement"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f6"
+      },
+      "to" : [ {
+        "key_code" : "illumination_increment"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f7"
+      },
+      "to" : [ {
+        "key_code" : "rewind"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f8"
+      },
+      "to" : [ {
+        "key_code" : "play_or_pause"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f9"
+      },
+      "to" : [ {
+        "key_code" : "fastforward"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f10"
+      },
+      "to" : [ {
+        "key_code" : "mute"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f11"
+      },
+      "to" : [ {
+        "key_code" : "volume_decrement"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f12"
+      },
+      "to" : [ {
+        "key_code" : "volume_increment"
+      } ]
+    } ],
+    "name" : "My Dvorak",
+    "virtual_hid_keyboard" : {
+      "caps_lock_delay_milliseconds" : 0,
+      "country_code" : 0,
+      "keyboard_type" : "ansi",
+      "keyboard_type_v2" : "ansi"
+    }
+  }, {
+    "fn_function_keys" : [ {
+      "from" : {
+        "key_code" : "f3"
+      },
+      "to" : [ {
+        "key_code" : "mission_control"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f4"
+      },
+      "to" : [ {
+        "key_code" : "launchpad"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f5"
+      },
+      "to" : [ {
+        "key_code" : "illumination_decrement"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f6"
+      },
+      "to" : [ {
+        "key_code" : "illumination_increment"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f9"
+      },
+      "to" : [ {
+        "consumer_key_code" : "fastforward"
+      } ]
+    } ],
+    "name" : "QWERTY",
+    "virtual_hid_keyboard" : {
+      "country_code" : 0
+    }
+  } ]
 }
