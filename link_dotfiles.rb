@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "json"
+
 DOTDIR = "dotfiles"
 
 def sh(cmd); system(cmd, exception: true); end
@@ -46,10 +48,18 @@ if File.directory?(fork_dir)
   else
     puts "goku binary up-to-date; skipping rebuild"
   end
-  # Regenerate dotfiles/karabiner.json (input AND output redirected to dotfiles).
-  edn  = File.expand_path("~/#{DOTDIR}/karabiner.edn")
-  json = File.expand_path("~/#{DOTDIR}/karabiner.json")
-  sh "GOKU_EDN_CONFIG_FILE=#{edn} GOKU_KARABINER_JSON_FILE=#{json} #{forked_goku}"
+  # Regenerate dotfiles/karabiner.json. goku reads its input from
+  # ~/.config/karabiner/karabiner.json (no env var for the input path), so seed
+  # that with the dotfiles copy first; -A then writes the merged result to
+  # stdout, which we capture and write back into dotfiles.
+  sh "cp #{DOTDIR}/karabiner.json .config/karabiner/"
+  edn = File.expand_path("~/#{DOTDIR}/karabiner.edn")
+  # NOTE: goku exits 1 after `--dry-run-all` even on success (pre-existing
+  # quirk), so don't gate on its exit status — validate the output is parseable
+  # JSON instead, which catches actual failures.
+  output = `GOKU_EDN_CONFIG_FILE=#{edn} #{forked_goku} -A`
+  JSON.parse(output) # raises on garbage / empty output
+  File.write("#{DOTDIR}/karabiner.json", output)
 else
   warn "NOTE: #{fork_dir} not present — using the checked-in karabiner.json " \
        "without regenerating from karabiner.edn."
