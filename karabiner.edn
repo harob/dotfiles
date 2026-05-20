@@ -4,15 +4,8 @@
 
 {:profiles
  {:Goku {:default true :selected true
-         ;; Permissive-tap spacebar:
-         ;;   :held  -> after this many ms with space still held, activate layer.
-         ;;   :delay -> rolled-keys window: an other-key press within this many ms
-         ;;             of pressing space causes :delayed.:canceled to fire and
-         ;;             emit a space. Kept short (well below the alone-tap range)
-         ;;             so :canceled rarely also fires on a clean tap release —
-         ;;             which would double up with :alone.
-         :held  200
-         :delay 50}}
+         ;; :held -> spacebar held this many ms with no other key -> layer on.
+         :held 200}}
 
  :applications
  {:emacs ["^org\\.gnu\\.Emacs$"]
@@ -29,22 +22,19 @@
   ;; Mirrors the Glove80 hardware Lower layer for the MacBook built-in keyboard.
   ;; Must precede the Dvorak remap so position-based mappings win.
   {:des "Lower layer (hold spacebar)"
-   :rules [;; Permissive-tap trigger:
+   :rules [;; Trigger:
            ;;   :held    — key still down at :held threshold       -> set "lower" (layer on)
            ;;   :afterup — key release (always)                    -> clear "lower"
            ;;   :alone   — clean tap-release, no other key pressed -> emit a space
-           ;;   :delayed.:canceled — other key pressed in :delay   -> emit a space
-           ;;                       (rolled keys keep their space)
-           ;; :alone and :delayed.:canceled CAN both fire on the same alone release
-           ;; if it happens inside :delay (Karabiner's :canceled fires on the from
-           ;; key's release too, not only on other-key events). The :delay is kept
-           ;; short to keep that double-fire window narrow — most alone-taps land
-           ;; outside it.
+           ;; Plain to_if_alone. Rolled keys (typing space and the next key with
+           ;; overlap) can occasionally swallow the space because Karabiner skips
+           ;; :alone whenever any other key was pressed during the hold; that's a
+           ;; deliberate trade vs. the unreliable spaces we got from the fork's
+           ;; per-to-event-conditions on :canceled.
            [:spacebar nil [:builtin]
             {:held    ["lower" 1]
              :afterup ["lower" 0]
-             :alone   :spacebar
-             :delayed {:canceled :spacebar}}]
+             :alone   :spacebar}]
            ;; Layered remaps (each requires lower=1 AND built-in keyboard).
            [:tab          :mute              [["lower" 1] :builtin]]
            [:q            :volume_decrement  [["lower" 1] :builtin]]

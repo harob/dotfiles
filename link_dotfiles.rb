@@ -26,10 +26,15 @@ end
 
 sh "cp #{DOTDIR}/karabiner.json .config/karabiner/"
 sh "ln -Fs ~/#{DOTDIR}/karabiner.edn .config/karabiner.edn"
-if system("command -v goku >/dev/null 2>&1")
+# Prefer the locally-built fork (it supports :conditions on individual to-events;
+# see workspace/forks/GokuRakuJoudo). Fall back to a goku on PATH if not present.
+forked_goku = File.expand_path("~/workspace/forks/GokuRakuJoudo/goku")
+if File.executable?(forked_goku)
+  sh forked_goku
+elsif system("command -v goku >/dev/null 2>&1")
   sh "goku"
 else
-  warn "WARNING: goku not found on PATH; karabiner.edn was linked but not applied. Install with `brew install yqrashawn/goku/goku`."
+  warn "WARNING: goku not found (neither #{forked_goku} nor on PATH); karabiner.edn was linked but not applied."
 end
 
 sh "mkdir -p .config/ghostty"
