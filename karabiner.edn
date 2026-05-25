@@ -5,7 +5,7 @@
 {:profiles
  {:Goku {:default true :selected true
          ;; :held -> spacebar held this many ms with no other key -> layer on.
-         :held 200}}
+         :held 150}}
 
  :applications
  {:emacs ["^org\\.gnu\\.Emacs$"]
@@ -22,19 +22,22 @@
   ;; Mirrors the Glove80 hardware Lower layer for the MacBook built-in keyboard.
   ;; Must precede the Dvorak remap so position-based mappings win.
   {:des "Lower layer (hold spacebar)"
-   :rules [;; Trigger:
-           ;;   :held    — key still down at :held threshold       -> set "lower" (layer on)
-           ;;   :afterup — key release (always)                    -> clear "lower"
-           ;;   :alone   — clean tap-release, no other key pressed -> emit a space
-           ;; Plain to_if_alone. Rolled keys (typing space and the next key with
-           ;; overlap) can occasionally swallow the space because Karabiner skips
-           ;; :alone whenever any other key was pressed during the hold; that's a
-           ;; deliberate trade vs. the unreliable spaces we got from the fork's
-           ;; per-to-event-conditions on :canceled.
-           [:spacebar nil [:builtin]
-            {:held    ["lower" 1]
-             :afterup ["lower" 0]
-             :alone   :spacebar}]
+   :rules [;; Eager-emit trigger:
+           ;;   on press                            -> emit a space (always, immediately)
+           ;;   :held (key still down at threshold) -> emit a backspace AND set "lower"
+           ;;                                          (the backspace cancels the eager
+           ;;                                          space so the layer activation is
+           ;;                                          visually clean)
+           ;;   :afterup                            -> clear "lower" on release
+           ;; This makes spaces unconditionally reliable — rolled keys (typing
+           ;; space + next letter with overlap) can no longer swallow them,
+           ;; because the space is emitted on the very first event. Cost: when
+           ;; the layer activates after a deliberate hold, the OS briefly sees a
+           ;; space character before the backspace removes it (~:held ms of
+           ;; flicker in editable text fields).
+           [:spacebar :spacebar [:builtin]
+            {:held    [:delete_or_backspace ["lower" 1]]
+             :afterup ["lower" 0]}]
            ;; Layered remaps (each requires lower=1 AND built-in keyboard).
            [:tab          :mute              [["lower" 1] :builtin]]
            [:q            :volume_decrement  [["lower" 1] :builtin]]
