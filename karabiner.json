@@ -599,6 +599,49 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "WhatsApp: ctrl-p = up (the app binds ctrl-p to a menu item)",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "p",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "up_arrow"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net\\.whatsapp\\.WhatsApp$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_unless"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "r",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "up_arrow"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net\\.whatsapp\\.WhatsApp$" ]
+          }, {
+            "identifiers" : [ {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "Caps Lock: tap = Escape, hold = Control",
         "manipulators" : [ {
           "to_if_alone" : [ {

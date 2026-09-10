@@ -10,7 +10,8 @@
  :applications
  {:emacs ["^org\\.gnu\\.Emacs$"]
   :terms ["^com\\.googlecode\\.iterm2$"
-          "^com\\.mitchellh\\.ghostty$"]}
+          "^com\\.mitchellh\\.ghostty$"]
+  :whatsapp ["^net\\.whatsapp\\.WhatsApp$"]}
 
  ;; Only the MacBook built-in keyboard needs the QWERTY -> Dvorak remap;
  ;; my external keyboards (e.g. Glove80) already type Dvorak in hardware.
@@ -82,6 +83,10 @@
            [:!Tn     :!Oleft_arrow          [:!emacs :!terms :builtin]]   ;; Dvorak b
            [:!Ty     :!Oright_arrow         [:!emacs :!terms :builtin]]   ;; Dvorak f
            [:!Tj     :delete_or_backspace   [:!emacs :builtin]]]}         ;; Dvorak h
+
+  {:des "WhatsApp: ctrl-p = up (the app binds ctrl-p to a menu item)"
+   :rules [[:!Tp :up_arrow [:whatsapp :!builtin]]
+           [:!Tr :up_arrow [:whatsapp :builtin]]]}   ;; Dvorak p
 
   {:des "Caps Lock: tap = Escape, hold = Control"
    :rules [;; ## means "optionally with any modifier"
