@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "tui": "fullscreen",
+  "autoDreamEnabled": true,
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.py",
+    "padding": 0
+  }
+}

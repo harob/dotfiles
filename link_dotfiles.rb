@@ -6,6 +6,13 @@ DOTDIR = "dotfiles"
 
 def sh(cmd); system(cmd, exception: true); end
 
+# For the ~/.claude/settings.json merge below.
+def deep_merge(base, overlay)
+  base.merge(overlay) do |_key, old_val, new_val|
+    (old_val.is_a?(Hash) && new_val.is_a?(Hash)) ? deep_merge(old_val, new_val) : new_val
+  end
+end
+
 Dir.chdir File::expand_path("~")
 Dir.foreach(DOTDIR) do |file|
   next unless (file =~ /^\.[a-z]+/ && file != ".git" && file != ".claude")
@@ -34,6 +41,51 @@ sh "ln -Fs ~/Dropbox/config/enchant/en_US.dic ~/.config/enchant/"
 
 sh "mkdir -p .config/direnv"
 sh "ln -Fs ~/#{DOTDIR}/direnv.toml .config/direnv/direnv.toml"
+
+# Claude Code. statusline.py is static, so a symlink is fine. settings.json is
+# not: Claude Code rewrites it itself and mixes our preferences in with
+# machine-local state (current model, installed plugins, accumulated
+# permissions.allow), so we merge in a fragment of just the keys we own.
+#
+# dotfiles/claude/ has no leading dot so the loop above skips it — .claude is
+# excluded there to keep the untracked .claude/settings.local.json out of $HOME.
+sh "mkdir -p .claude"
+sh "ln -Fs ~/#{DOTDIR}/claude/statusline.py .claude/statusline.py"
+puts ".claude/statusline.py => #{DOTDIR}/claude/statusline.py"
+
+settings_path = File.expand_path("~/.claude/settings.json")
+fragment      = JSON.parse(File.read("#{DOTDIR}/claude/settings.merge.json"))
+
+# Drop a stale symlink, or File.write would follow it back into the repo.
+File.unlink(settings_path) if File.symlink?(settings_path)
+
+live_text = File.exist?(settings_path) ? File.read(settings_path) : nil
+live =
+  if live_text.nil?
+    {}
+  else
+    begin
+      JSON.parse(live_text)
+    rescue JSON::ParserError => e
+      # Nothing backs settings.json up, so leave what we can't parse alone. Not
+      # a `raise`, so the karabiner setup below still runs.
+      warn "WARNING: #{settings_path} is not valid JSON (#{e.message.lines.first.strip}); " \
+           "skipping the Claude settings merge. Fix it by hand and re-run."
+      nil
+    end
+  end
+
+if live
+  merged = JSON.pretty_generate(deep_merge(live, fragment)) + "\n"
+  # Claude Code's own format is byte-for-byte what pretty_generate emits, so
+  # this makes a repeat run a true no-op rather than racing a live session.
+  if merged == live_text
+    puts ".claude/settings.json already up to date"
+  else
+    File.write(settings_path, merged)
+    puts ".claude/settings.json <= #{DOTDIR}/claude/settings.merge.json (merged)"
+  end
+end
 
 sh "cp #{DOTDIR}/harry.gitnote.plist Library/LaunchAgents/harry.gitnote.plist"
 sh "launchctl unload Library/LaunchAgents/harry.gitnote.plist || true"
