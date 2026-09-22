@@ -53,6 +53,10 @@ sh "mkdir -p .claude"
 sh "ln -Fs ~/#{DOTDIR}/claude/statusline.py .claude/statusline.py"
 puts ".claude/statusline.py => #{DOTDIR}/claude/statusline.py"
 
+sh "mkdir -p .claude/themes"
+sh "ln -Fs ~/#{DOTDIR}/claude/themes/loud-user-prompts.json .claude/themes/loud-user-prompts.json"
+puts ".claude/themes/loud-user-prompts.json => #{DOTDIR}/claude/themes/loud-user-prompts.json"
+
 settings_path = File.expand_path("~/.claude/settings.json")
 fragment      = JSON.parse(File.read("#{DOTDIR}/claude/settings.merge.json"))
 

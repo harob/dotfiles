@@ -1,0 +1,9 @@
+{
+  "name": "Dark (loud user prompts)",
+  "base": "dark",
+  "overrides": {
+    "userMessageBackground": "rgb(88, 88, 88)",
+    "userMessageBackgroundHover": "rgb(104, 104, 104)",
+    "subtle": "rgb(150, 150, 150)"
+  }
+}

@@ -5,6 +5,7 @@
   "tui": "fullscreen",
   "autoDreamEnabled": true,
   "editorMode": "vim",
+  "theme": "custom:loud-user-prompts",
   "skipAutoPermissionPrompt": true,
   "statusLine": {
     "type": "command",
