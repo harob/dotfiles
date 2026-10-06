@@ -1,0 +1,13 @@
+// Global dprint config (~/.config/dprint/dprint.jsonc), used wherever a project
+// has no dprint.json of its own. Linked into place by link_dotfiles.rb.
+{
+  "lineWidth": 100,
+  "markdown": {
+    // Reflow prose to lineWidth. The default, "maintain", never wraps lines.
+    "textWrap": "always",
+    "unorderedListKind": "asterisks"
+  },
+  "plugins": [
+    "npm:@dprint/markdown@0.26.0"
+  ]
+}

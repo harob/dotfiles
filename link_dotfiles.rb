@@ -42,6 +42,9 @@ sh "ln -Fs ~/Dropbox/config/enchant/en_US.dic ~/.config/enchant/"
 sh "mkdir -p .config/direnv"
 sh "ln -Fs ~/#{DOTDIR}/direnv.toml .config/direnv/direnv.toml"
 
+sh "mkdir -p .config/dprint"
+sh "ln -Fs ~/#{DOTDIR}/dprint.jsonc .config/dprint/dprint.jsonc"
+
 # Claude Code. statusline.py is static, so a symlink is fine. settings.json is
 # not: Claude Code rewrites it itself and mixes our preferences in with
 # machine-local state (current model, installed plugins, accumulated
