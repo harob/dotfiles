@@ -45,6 +45,14 @@ sh "ln -Fs ~/#{DOTDIR}/direnv.toml .config/direnv/direnv.toml"
 sh "mkdir -p .config/dprint"
 sh "ln -Fs ~/#{DOTDIR}/dprint.jsonc .config/dprint/dprint.jsonc"
 
+# Hammerspoon Spoons aren't vendored, so clone the ones init.lua loads.
+sh "mkdir -p .hammerspoon/Spoons"
+if File.directory? ".hammerspoon/Spoons/SkyRocket.spoon"
+  puts ".hammerspoon/Spoons/SkyRocket.spoon already installed"
+else
+  sh "git clone https://github.com/dbalatero/SkyRocket.spoon.git .hammerspoon/Spoons/SkyRocket.spoon"
+end
+
 # Claude Code. statusline.py is static, so a symlink is fine. settings.json is
 # not: Claude Code rewrites it itself and mixes our preferences in with
 # machine-local state (current model, installed plugins, accumulated

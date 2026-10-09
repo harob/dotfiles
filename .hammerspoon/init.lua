@@ -164,7 +164,7 @@ hs.hotkey.bind(mash, "r", function() switchLayout() end)
 
 ---- Hyperdock / Zooom2 replacement
 
--- Install with `git clone https://github.com/dbalatero/SkyRocket.spoon.git ~/.hammerspoon/Spoons/SkyRocket.spoon`
+-- Installed by link_dotfiles.rb
 local SkyRocket = hs.loadSpoon("SkyRocket")
 
 sky = SkyRocket:new({
