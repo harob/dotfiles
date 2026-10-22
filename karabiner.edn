@@ -76,13 +76,13 @@
            [:!Tw :!Odelete_or_backspace [:!emacs :!terms :!builtin]]
            [:!Tb :!Oleft_arrow          [:!emacs :!terms :!builtin]]
            [:!Tf :!Oright_arrow         [:!emacs :!terms :!builtin]]
-           [:!Th :delete_or_backspace   [:!emacs :!builtin]]
+           [:!Th :delete_or_backspace   [:!emacs :!terms :!builtin]]
            ;; Built-in MacBook: match the QWERTY position of the Dvorak letter,
            ;; so the rule fires *before* the Dvorak remap rewrites the keypress.
            [:!Tcomma :!Odelete_or_backspace [:!emacs :!terms :builtin]]   ;; Dvorak w
            [:!Tn     :!Oleft_arrow          [:!emacs :!terms :builtin]]   ;; Dvorak b
            [:!Ty     :!Oright_arrow         [:!emacs :!terms :builtin]]   ;; Dvorak f
-           [:!Tj     :delete_or_backspace   [:!emacs :builtin]]]}         ;; Dvorak h
+           [:!Tj     :delete_or_backspace   [:!emacs :!terms :builtin]]]} ;; Dvorak h
 
   {:des "WhatsApp: ctrl-p = up (the app binds ctrl-p to a menu item)"
    :rules [[:!Tp :up_arrow [:whatsapp :!builtin]]

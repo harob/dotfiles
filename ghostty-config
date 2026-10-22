@@ -2,3 +2,20 @@
 # theme = cyberpunk
 # theme = Monokai Classic
 keybind = super+shift+f=write_screen_file:open
+
+# Split management behind a C-Space leader, matching evil-leader's C-SPC in Emacs.
+keybind = ctrl+space>h=goto_split:left
+keybind = ctrl+space>j=goto_split:down
+keybind = ctrl+space>k=goto_split:up
+keybind = ctrl+space>l=goto_split:right
+# Also accept C-hjkl, so Ctrl can stay held after the leader.
+keybind = ctrl+space>ctrl+h=goto_split:left
+keybind = ctrl+space>ctrl+j=goto_split:down
+keybind = ctrl+space>ctrl+k=goto_split:up
+keybind = ctrl+space>ctrl+l=goto_split:right
+keybind = ctrl+space>backslash=new_split:right
+keybind = ctrl+space>minus=new_split:down
+keybind = ctrl+space>m=toggle_split_zoom
+keybind = ctrl+space>equal=equalize_splits
+# Press the leader twice to send a literal C-Space (NUL) to the program.
+keybind = ctrl+space>ctrl+space=text:\x00

@@ -499,6 +499,9 @@
             "type" : "frontmost_application_unless",
             "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
           }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
+          }, {
             "identifiers" : [ {
               "is_built_in_keyboard" : true
             } ],
@@ -590,6 +593,9 @@
           "conditions" : [ {
             "type" : "frontmost_application_unless",
             "bundle_identifiers" : [ "^org\\.gnu\\.Emacs$" ]
+          }, {
+            "type" : "frontmost_application_unless",
+            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$", "^com\\.mitchellh\\.ghostty$" ]
           }, {
             "identifiers" : [ {
               "is_built_in_keyboard" : true
