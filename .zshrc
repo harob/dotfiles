@@ -153,3 +153,5 @@ zstyle ':completion:*' menu select
 
 # Fish-like syntax highlighting. Install with `brew install zsh-syntax-highlighting`. Must stay at EOF!
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
